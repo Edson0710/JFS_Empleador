@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Registro_1"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/Registro1_tview.anuncio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bienvenido"
+        android:layout_centerHorizontal="true"
+        android:textSize="45sp"
+        android:textColor="#000"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="100dp"
+        />
+
+    <TextView
+        android:id="@+id/Registro1_tview.instrucciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Para registrarse, favor de llenar todos los campos del registro."
+        android:textSize="20sp"
+        android:textColor="#000"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/Registro1_tview_nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre de la empresa:"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="40dp"
+                    />
+
+
+                <EditText
+                    android:id="@+id/Registro1_etxt_nombre"
+                    android:layout_width="397dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/Registro1_tview_nombre"
+                    />
+
+                <TextView
+                    android:id="@+id/Registro1_tview_giro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giro de la empresa:"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:layout_below="@+id/Registro1_etxt_nombre"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="10dp"
+                    />
+
+                <EditText
+                    android:id="@+id/Registro1_etxt_apellidos"
+                    android:layout_width="397dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/Registro1_tview_giro"
+                    />
+
+                <TextView
+                    android:id="@+id/Registro1_tview_correo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Correo:"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:layout_below="@+id/Registro1_etxt_apellidos"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="10dp"
+                    />
+
+
+                <EditText
+                    android:id="@+id/Registro1_etxt_correo"
+                    android:layout_width="397dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/Registro1_tview_correo"
+                    />
+
+                <TextView
+                    android:id="@+id/Registro1_tview_contrasena"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contraseña:"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:layout_below="@+id/Registro1_etxt_correo"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="10dp"
+                    />
+
+                <EditText
+                    android:id="@+id/Registro1_etxt_contrasena"
+                    android:layout_width="397dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/Registro1_tview_contrasena"
+                    />
+
+                <TextView
+                    android:id="@+id/Registro1_tview_contrasena2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Confirmar contraseña:"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:layout_below="@+id/Registro1_etxt_contrasena"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="10dp"
+                    />
+
+                <EditText
+                    android:id="@+id/Registro1_etxt_contrasena2"
+                    android:layout_width="397dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/Registro1_tview_contrasena2"
+                    />
+
+                <TextView
+                    android:id="@+id/Registro1_tview_direccion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dirección:"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:layout_below="@+id/Registro1_etxt_contrasena2"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    />
+
+                <EditText
+                    android:id="@+id/Registro1_etxt_direccion"
+                    android:layout_width="397dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/Registro1_tview_direccion"
+                    />
+
+                <TextView
+                    android:id="@+id/Registro1_tview_telefono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teléfono:"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:layout_below="@+id/Registro1_etxt_direccion"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    />
+
+                <EditText
+                    android:id="@+id/Registro1_etxt_telefono"
+                    android:layout_width="397dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/Registro1_tview_telefono"
+                    />
+
+
+                <Button
+                    android:id="@+id/Registro1_boton_continuar"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/Registro1_boton_referencia"
+                    android:layout_marginStart="250dp"
+                    android:layout_marginBottom="-130dp"
+                    android:onClick="Continuar"
+
+                    android:text="Continuar" />
+
+
+                <Button
+                    android:id="@+id/Registro1_boton_cancelar"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/Registro1_boton_referencia"
+                    android:layout_marginStart="53dp"
+                    android:layout_marginBottom="-130dp"
+                    android:onClick="Cancelar"
+                    android:text="Cancelar" />
+
+                <Button
+                    android:id="@+id/Registro1_boton_referencia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_below="@id/Registro1_etxt_telefono"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="150dp"
+                    />
+
+            </RelativeLayout>
+    </ScrollView>
+
+
+</LinearLayout>

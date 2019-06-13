@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Registro_2">
+
+
+    <Button
+        android:id="@+id/Registro2_boton_regresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        android:onClick="Regresar"
+        android:text="Regresar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/Registro2_tview_anuncio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="PRESTACIONES"
+                android:textColor="#000"
+                android:textSize="35sp" />
+
+            <TextView
+                android:id="@+id/Registro2_tview_transporte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Registro2_tview_anuncio"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="35dp"
+                android:text="Transporte:"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:id="@+id/Registro2_rboton_transporte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Registro2_tview_transporte"
+                android:layout_marginTop="25dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/Registro2_rboton_si1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:checked="true"
+                        android:text="Sí " />
+
+                    <RadioButton
+                        android:id="@+id/Registro2_rboton_no1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:text="No " />
+
+                </LinearLayout>
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/Registro2_tview_comisiones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Registro2_rboton_transporte"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Comisiones:"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:id="@+id/Registro2_rboton_comisiones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Registro2_tview_comisiones"
+                android:layout_marginTop="25dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/Registro2_rboton_si2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:checked="true"
+                        android:text="Sí " />
+
+                    <RadioButton
+                        android:id="@+id/Registro2_rboton_no2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:text="No " />
+
+                </LinearLayout>
+            </RadioGroup>
+
+
+            <TextView
+                android:id="@+id/Registro2_tview_bono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Registro2_rboton_comisiones"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Bonos:"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <RadioGroup
+                android:id="@+id/Registro2_rboton_bono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Registro2_tview_bono"
+                android:layout_marginTop="25dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/Registro2_rboton_si3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:checked="true"
+                        android:text="Sí " />
+
+                    <RadioButton
+                        android:id="@+id/Registro2_rboton_no3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100dp"
+                        android:text="No " />
+
+                </LinearLayout>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/Registro2_tview_otro1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Registro2_rboton_bono"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:text="Otro:"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/Registro2_etxt_otro1"
+                android:layout_width="397dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Registro2_tview_otro1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                android:id="@+id/Registro2_tview_otro2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Registro2_etxt_otro1"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Otro:"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/Registro2_etxt_otro2"
+                android:layout_width="397dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Registro2_tview_otro2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                android:id="@+id/Registro2_tview_otro3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Registro2_etxt_otro2"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:text="Otro:"
+                android:textColor="#000"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/Registro2_etxt_otro3"
+                android:layout_width="397dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Registro2_tview_otro3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp" />
+
+
+            <Button
+                android:id="@+id/Registro2_boton_continuar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/Registro2_boton_referencia"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="-85dp"
+                android:onClick="Continuar"
+                android:text="Continuar" />
+
+            <Button
+                android:id="@+id/Registro2_boton_referencia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Registro2_etxt_otro3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="100dp"
+                android:visibility="invisible" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</LinearLayout>
