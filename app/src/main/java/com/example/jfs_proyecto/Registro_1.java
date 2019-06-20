@@ -18,8 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Registro_1 extends AppCompatActivity {
-    EditText correo_etxt;
-    String correo;
+    EditText correo_etxt, contra1_etxt, contra2_etxt, nombre_etxt, giro_etxt, direccion_etxt, telefono_etxt;
+    String correo, contra1, contra2, nombre, giro, direccion, telefono;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,12 @@ public class Registro_1 extends AppCompatActivity {
         setContentView(R.layout.activity_registro_1);
 
         correo_etxt = findViewById(R.id.Registro1_etxt_correo);
+        contra1_etxt = findViewById(R.id.Registro1_etxt_contrasena);
+        contra2_etxt = findViewById(R.id.Registro1_etxt_contrasena2);
+        nombre_etxt = findViewById(R.id.Registro1_etxt_nombre);
+        giro_etxt = findViewById(R.id.Registro1_etxt_giro);
+        direccion_etxt = findViewById(R.id.Registro1_etxt_direccion);
+        telefono_etxt = findViewById(R.id.Registro1_etxt_telefono);
     }
 
     //-------------------------Botones--------------------------------------------------------------
@@ -40,19 +46,28 @@ public class Registro_1 extends AppCompatActivity {
     //Metodo boton continuar
     public void Continuar(View view) {
         correo = correo_etxt.getText().toString().trim();
-        if (correo.equals("")) {
+        contra1 = contra1_etxt.getText().toString().trim();
+        contra2 = contra2_etxt.getText().toString().trim();
+        nombre = nombre_etxt.getText().toString().trim();
+        giro = giro_etxt.getText().toString().trim();
+        direccion = direccion_etxt.getText().toString().trim();
+        telefono = telefono_etxt.getText().toString().trim();
+        if (correo.equals("") || contra1.equals("") || contra2.equals("") || nombre.equals("") || giro.equals("")
+                || direccion.equals("") || telefono.equals("")){
             Toast.makeText(Registro_1.this, "Llene todos los campos", Toast.LENGTH_SHORT).show();
-        } else {
+        } else if (contra1.equals(contra2)){
             validacion();
+        } else{
+            Toast.makeText(Registro_1.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
         }
     }
 
     //---------------------------Funciones----------------------------------------------------------
     //Metodo para validar si existe el correo
     public void validacion() {
-        String url = "http://192.168.100.80/jfs_proyecto/validacion_empleador.php?correo=" + correo;
+        String url = "http://jfsproyecto.online/validacion_empleador.php?correo=" + correo;
         final Intent intent = new Intent(Registro_1.this, Registro_2.class);
-        JsonObjectRequest peticion = new JsonObjectRequest
+        final JsonObjectRequest peticion = new JsonObjectRequest
                 (
                         Request.Method.GET,
                         url,
@@ -65,6 +80,12 @@ public class Registro_1 extends AppCompatActivity {
 
                                     switch (valor) {
                                         case "NO":
+                                            intent.putExtra("nombre", nombre);
+                                            intent.putExtra("giro", giro);
+                                            intent.putExtra("correo", correo);
+                                            intent.putExtra("contra", contra1);
+                                            intent.putExtra("direccion", direccion);
+                                            intent.putExtra("telefono", telefono);
                                             startActivity(intent);
                                             break;
                                         case "SI":

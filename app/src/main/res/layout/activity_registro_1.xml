@@ -73,7 +73,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/Registro1_etxt_apellidos"
+                    android:id="@+id/Registro1_etxt_giro"
                     android:layout_width="397dp"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -87,7 +87,7 @@
                     android:text="Correo:"
                     android:textColor="#000"
                     android:textSize="20sp"
-                    android:layout_below="@+id/Registro1_etxt_apellidos"
+                    android:layout_below="@+id/Registro1_etxt_giro"
                     android:layout_marginTop="15dp"
                     android:layout_marginStart="10dp"
                     />
@@ -181,6 +181,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@+id/Registro1_tview_telefono"
+                    android:inputType="number"
                     />
 
 

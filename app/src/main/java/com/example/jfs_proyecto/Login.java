@@ -55,7 +55,7 @@ public class Login extends AppCompatActivity {
     //-----------------------------Funciones--------------------------------------------------------
     //Funcion para login
     public void login() {
-        String url = "http://192.168.100.80/jfs_proyecto/login_empleador.php?correo=" + correo +
+        String url = "http://jfsproyecto.online/login_empleador.php?correo=" + correo +
                 "&pass=" + pass;
         final Intent intent = new Intent(Login.this, Vista_principal.class);
         JsonObjectRequest peticion = new JsonObjectRequest
