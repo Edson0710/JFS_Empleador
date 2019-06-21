@@ -17,7 +17,6 @@ public class Registro_2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_2);
 
-        String ivan = getIntent().getExtras().getString("Ivan");
         nombre = getIntent().getExtras().getString("nombre");
         giro = getIntent().getExtras().getString("giro");
         correo = getIntent().getExtras().getString("correo");
