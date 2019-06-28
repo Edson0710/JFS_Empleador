@@ -159,16 +159,19 @@ public class Login extends AppCompatActivity {
     public void onBackPressed() {
     }
 
+    //Funcion para cambiar el estado al cerrar sesion
     public static void changeEstado(Context c, boolean b) {
         SharedPreferences preferences = c.getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
         preferences.edit().putBoolean(PREFERENCE_ESTADO_BUTTON, b).apply();
     }
 
+    //Funcion para guardar el estado de mantener sesion
     public void guardarEstado() {
         SharedPreferences preferences = getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
         preferences.edit().putBoolean(PREFERENCE_ESTADO_BUTTON, sesion.isChecked()).apply();
     }
 
+    //Funcion para obtener si se mantiene sesion
     public boolean obtenerEstado() {
         SharedPreferences preferences = getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
         return preferences.getBoolean(PREFERENCE_ESTADO_BUTTON, false);
