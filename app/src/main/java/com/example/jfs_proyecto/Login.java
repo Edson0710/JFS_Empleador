@@ -1,11 +1,15 @@
 package com.example.jfs_proyecto;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -20,15 +24,39 @@ import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
     EditText correo_etxt, pass_etxt;
+    RadioButton sesion;
     String correo, pass;
+    private boolean isActivate;
+    private static final String STRING_PREFERENCES = "preferencias";
+    private static final String PREFERENCE_ESTADO_BUTTON = "estado.button";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if (obtenerEstado()) {
+            Intent intent = new Intent(Login.this, Vista_principal.class);
+            startActivity(intent);
+        }
+
         correo_etxt = findViewById(R.id.Login_etxt_correo);
         pass_etxt = findViewById(R.id.Login_etxt_contrasena);
+        sesion = findViewById(R.id.Login_rboton_sesion);
+
+        isActivate = sesion.isChecked(); //DESACTIVADO
+
+        sesion.setOnClickListener(new View.OnClickListener() {
+            //ACTIVADO
+            @Override
+            public void onClick(View v) {
+                if (isActivate) {
+                    sesion.setChecked(false);
+                }
+                isActivate = sesion.isChecked();
+
+            }
+        });
 
     }
 
@@ -43,6 +71,7 @@ public class Login extends AppCompatActivity {
 
     //Boton iniciar sesion
     public void Iniciar(View view) {
+        guardarEstado();
         correo = correo_etxt.getText().toString().trim();
         pass = pass_etxt.getText().toString().trim();
         if (correo.equals("") || pass.equals("")) {
@@ -71,6 +100,13 @@ public class Login extends AppCompatActivity {
 
                                     switch (valor) {
                                         case "EXITOSO":
+                                            String id = response.getString("id");
+                                            String nombre = response.getString("nombre");
+                                            String imagenUrl = response.getString("imagen");
+                                            guardarId(id);
+                                            guardarNombre(nombre);
+                                            guardarUrl(imagenUrl);
+                                            intent.putExtra("imagenUrl", imagenUrl);
                                             startActivity(intent);
                                             break;
                                         case "FALLIDO":
@@ -94,4 +130,47 @@ public class Login extends AppCompatActivity {
         x.add(peticion);
     }
 
+    //Funcion para guardar el ID
+    public void guardarId(String my_id) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
+        SharedPreferences.Editor myEditor = preferences.edit();
+        myEditor.putString("ID", my_id);
+        myEditor.commit();
+    }
+
+    //Funcion para guardar el nombre
+    public void guardarNombre(String my_id) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
+        SharedPreferences.Editor myEditor = preferences.edit();
+        myEditor.putString("NOMBRE", my_id);
+        myEditor.commit();
+    }
+
+    //Funcion para guardar la imagen
+    public void guardarUrl(String my_id) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
+        SharedPreferences.Editor myEditor = preferences.edit();
+        myEditor.putString("IMAGEN", my_id);
+        myEditor.commit();
+    }
+
+    //Funcion para no poder regresar al activity anterior
+    @Override
+    public void onBackPressed() {
+    }
+
+    public static void changeEstado(Context c, boolean b) {
+        SharedPreferences preferences = c.getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
+        preferences.edit().putBoolean(PREFERENCE_ESTADO_BUTTON, b).apply();
+    }
+
+    public void guardarEstado() {
+        SharedPreferences preferences = getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
+        preferences.edit().putBoolean(PREFERENCE_ESTADO_BUTTON, sesion.isChecked()).apply();
+    }
+
+    public boolean obtenerEstado() {
+        SharedPreferences preferences = getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
+        return preferences.getBoolean(PREFERENCE_ESTADO_BUTTON, false);
+    }
 }

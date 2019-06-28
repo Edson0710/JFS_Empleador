@@ -1,6 +1,8 @@
 package com.example.jfs_proyecto;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,15 +12,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Vista_principal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    TextView nombre_tv;
+    CircleImageView imagen;
+    String id, nombre, imagenUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vista_principal);
+
+        id = obtenerId();
+        nombre = obtenerNombre();
+        imagenUrl = obtenerUrl();
+
 
 
 //------------------------------------- navigation drawer------------------------------------------
@@ -28,11 +44,17 @@ public class Vista_principal extends AppCompatActivity implements NavigationView
 
         drawer = findViewById(R.id.Drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View hView = navigationView.getHeaderView(0);
+        nombre_tv = hView.findViewById(R.id.Nav_header_tview_nombre);
+        imagen = hView.findViewById(R.id.Nav_header_imagen_imagen);
+        nombre_tv.setText(nombre);
+        Glide.with(getApplicationContext()).load(imagenUrl).into(imagen);
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toogle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toogle);
         toogle.syncState();
+
     }
 
     @Override
@@ -51,8 +73,9 @@ public class Vista_principal extends AppCompatActivity implements NavigationView
                 break;
 
             case R.id.nav_cerrar_sesion:
-                Intent CerrarSesion = new Intent(Vista_principal.this, Login.class);
-                startActivity(CerrarSesion);
+                Login.changeEstado(getApplicationContext(), false);
+                Intent intent = new Intent(Vista_principal.this, Login.class);
+                startActivity(intent);
                 break;
 
             case R.id.nav_soporte:
@@ -73,5 +96,26 @@ public class Vista_principal extends AppCompatActivity implements NavigationView
             super.onBackPressed();
         }
     }
-//-------------------------------------------------------------------------------------------------
+//--------------------------------------Funciones-------------------------------------------------
+
+    //Funcion para obtener ID
+    public String obtenerId() {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Vista_principal.this);
+        String id_preference = preferences.getString("ID", "1");
+        return id_preference;
+    }
+
+    //Funcion para obtener Nombre
+    public String obtenerNombre() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Vista_principal.this);
+        String id_preference = preferences.getString("NOMBRE", "1");
+        return id_preference;
+    }
+
+    //Funcion para obtener Imagen
+    public String obtenerUrl() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Vista_principal.this);
+        String id_preference = preferences.getString("IMAGEN", "1");
+        return id_preference;
+    }
 }
