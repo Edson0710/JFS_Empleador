@@ -17,19 +17,21 @@
             android:id="@+id/Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-            <FrameLayout
-                android:id="@+id/Fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-            </FrameLayout>
 
         </android.support.v7.widget.Toolbar>
+        <FrameLayout
+            android:layout_below="@id/Toolbar"
+            android:id="@+id/Fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
 
 
     </RelativeLayout>

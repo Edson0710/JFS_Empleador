@@ -67,8 +67,13 @@ public class Registro_3 extends AppCompatActivity {
     //-------------------------Botones--------------------------------------------------------------
     //Metodo boton regresar
     public void Regresar (View view){
-
         Intent intent = new Intent(Registro_3.this, Registro_2.class);
+        intent.putExtra("nombre", nombre);
+        intent.putExtra("giro", giro);
+        intent.putExtra("correo", correo);
+        intent.putExtra("contra", contra);
+        intent.putExtra("direccion", direccion);
+        intent.putExtra("telefono", telefono);
         startActivity(intent);
     }
 

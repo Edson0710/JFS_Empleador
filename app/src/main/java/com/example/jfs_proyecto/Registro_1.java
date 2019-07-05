@@ -53,11 +53,15 @@ public class Registro_1 extends AppCompatActivity {
         direccion = direccion_etxt.getText().toString().trim();
         telefono = telefono_etxt.getText().toString().trim();
         if (correo.equals("") || contra1.equals("") || contra2.equals("") || nombre.equals("") || giro.equals("")
-                || direccion.equals("") || telefono.equals("")){
+                || direccion.equals("") || telefono.equals("")) {
             Toast.makeText(Registro_1.this, "Llene todos los campos", Toast.LENGTH_SHORT).show();
-        } else if (contra1.equals(contra2)){
-            validacion();
-        } else{
+        } else if (contra1.equals(contra2)) {
+            if (telefono.length() == 10) {
+                validacion();
+            } else {
+                Toast.makeText(this, "Ingrese un número telefónico de 10 digitos", Toast.LENGTH_SHORT).show();
+            }
+        } else {
             Toast.makeText(Registro_1.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
         }
     }
