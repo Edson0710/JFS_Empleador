@@ -1,6 +1,8 @@
 package com.example.jfs_proyecto;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +26,7 @@ import java.net.URLEncoder;
 public class Crear_oferta extends AppCompatActivity {
     EditText et_nombre;
     Button publicar;
-    String nombre;
+    String nombre, id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,7 @@ public class Crear_oferta extends AppCompatActivity {
         et_nombre = findViewById(R.id.crear_nombre);
         publicar = findViewById(R.id.crear_publicar);
 
-
+        id = obtenerId();
 
 
         publicar.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +52,7 @@ public class Crear_oferta extends AppCompatActivity {
         nombre = et_nombre.getText().toString().trim();
         String url = null;
         try {
-            url = "http://jfsproyecto.online/crearOferta_empleador.php?nombre=" + URLEncoder.encode(nombre, "UTF-8");
+            url = "http://jfsproyecto.online/crearOferta_empleador.php?nombre=" + URLEncoder.encode(nombre, "UTF-8") + "&id=" + id;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -87,5 +89,12 @@ public class Crear_oferta extends AppCompatActivity {
                 });
         RequestQueue x = Volley.newRequestQueue(Crear_oferta.this);
         x.add(peticion);
+    }
+
+    //Funcion para obtener ID
+    public String obtenerId() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Crear_oferta.this);
+        String id_preference = preferences.getString("ID", "1");
+        return id_preference;
     }
 }
