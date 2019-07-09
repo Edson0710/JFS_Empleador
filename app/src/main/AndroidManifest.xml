@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Lista_ofertas"></activity>
+        <activity android:name=".Editar_oferta"></activity>
+        <activity android:name=".Historial" />
+        <activity android:name=".Lista_ofertas" />
         <activity android:name=".Crear_oferta" />
         <activity android:name=".Nueva_oferta" />
         <activity android:name=".Login">

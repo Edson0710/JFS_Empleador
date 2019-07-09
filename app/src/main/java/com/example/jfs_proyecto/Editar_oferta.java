@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,36 +20,41 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class Crear_oferta extends AppCompatActivity {
+public class Editar_oferta extends AppCompatActivity {
+    String nombre, id;
     EditText et_nombre;
-    Button publicar;
-    String nombre;
+    Button guardar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_oferta);
-        et_nombre = findViewById(R.id.crear_nombre);
-        publicar = findViewById(R.id.crear_publicar);
+        setContentView(R.layout.activity_editar_oferta);
 
+        nombre = getIntent().getExtras().getString("nombre");
+        id = getIntent().getExtras().getString("id");
 
+        et_nombre = findViewById(R.id.editar_nombre);
+        guardar = findViewById(R.id.aceptar);
 
+        et_nombre.setText(nombre);
 
-        publicar.setOnClickListener(new View.OnClickListener() {
+        guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                crear();
-                Intent intent = new Intent(Crear_oferta.this, Vista_principal.class);
+                guardarCambios();
+                Intent intent = new Intent(Editar_oferta.this, Historial.class);
+                finish();
                 startActivity(intent);
             }
         });
+
     }
 
-    //Metodo para publicar la oferta
-    public void crear() {
+    public void guardarCambios(){
         nombre = et_nombre.getText().toString().trim();
         String url = null;
         try {
-            url = "http://jfsproyecto.online/crearOferta_empleador.php?nombre=" + URLEncoder.encode(nombre, "UTF-8");
+            url = "http://jfsproyecto.online/editarOferta_empleador.php?id=" + id + "&nombre=" + URLEncoder.encode(nombre, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -85,7 +89,7 @@ public class Crear_oferta extends AppCompatActivity {
                         //Toast.makeText(Crear_oferta.this, "Error conexión", Toast.LENGTH_SHORT).show();
                     }
                 });
-        RequestQueue x = Volley.newRequestQueue(Crear_oferta.this);
+        RequestQueue x = Volley.newRequestQueue(Editar_oferta.this);
         x.add(peticion);
     }
 }

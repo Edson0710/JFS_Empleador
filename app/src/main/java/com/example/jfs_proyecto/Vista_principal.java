@@ -35,6 +35,8 @@ public class Vista_principal extends AppCompatActivity implements NavigationView
         nombre = obtenerNombre();
         imagenUrl = obtenerUrl();
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.Fragment_container, new Inicio_fragment()).commit();
+
 
 
 //------------------------------------- navigation drawer------------------------------------------

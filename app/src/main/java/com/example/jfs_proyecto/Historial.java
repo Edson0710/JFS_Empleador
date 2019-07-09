@@ -1,6 +1,7 @@
 package com.example.jfs_proyecto;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.jfs_proyecto.Adaptadores.HistorialAdapter;
 import com.example.jfs_proyecto.Adaptadores.OfertasAdapter;
 import com.example.jfs_proyecto.Pojos.Oferta;
 
@@ -25,7 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Lista_ofertas extends AppCompatActivity {
+public class Historial extends AppCompatActivity {
 
     private String JSON_URL;
     private JsonArrayRequest ArrayRequest;
@@ -37,16 +39,16 @@ public class Lista_ofertas extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_ofertas);
+        setContentView(R.layout.activity_historial);
+
         id = obtenerId();
         lista = new ArrayList<Oferta>();
-        obtenerOfertas();
+        obtenerHistorial();
     }
 
-
-    //Funcion para obtener la lista de ofertas
-    public void obtenerOfertas() {
-        JSON_URL = "http://jfsproyecto.online/ofertas_empleador.php?id=" + id + "&activo=" +1;
+    //Funcion para obtener la lista de ofertas del historial
+    public void obtenerHistorial() {
+        JSON_URL = "http://jfsproyecto.online/ofertas_empleador.php?id=" + id + "&activo=" +0;
         ArrayRequest = new JsonArrayRequest(JSON_URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -70,8 +72,8 @@ public class Lista_ofertas extends AppCompatActivity {
                 }
 
                 if (lista == null || lista.size() == 0) {
-                    AlertDialog.Builder myBuild = new AlertDialog.Builder(Lista_ofertas.this);
-                    myBuild.setMessage("Aun no hay ofertas publicadas");
+                    AlertDialog.Builder myBuild = new AlertDialog.Builder(Historial.this);
+                    myBuild.setMessage("Aun no hay ofertas en el historial");
                     myBuild.setTitle("JFS");
                     myBuild.setCancelable(false);
                     myBuild.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -92,20 +94,20 @@ public class Lista_ofertas extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Lista_ofertas.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(Historial.this, error.getMessage(), Toast.LENGTH_LONG).show();
 
             }
         });
 
-        requestQueue = Volley.newRequestQueue(Lista_ofertas.this);
+        requestQueue = Volley.newRequestQueue(Historial.this);
         requestQueue.add(ArrayRequest);
 
     }
 
     //Funcion para configurar el RecyclerView
     public void setuprecyclerview(List<Oferta> lista) {
-        recycler = (RecyclerView) findViewById(R.id.recyclerview_ofertas);
-        OfertasAdapter myadapter = new OfertasAdapter(this, lista);
+        recycler = (RecyclerView) findViewById(R.id.recyclerview_historial);
+        HistorialAdapter myadapter = new HistorialAdapter(this, lista);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recycler.setLayoutManager(mLayoutManager);
         recycler.setAdapter(myadapter);
@@ -113,10 +115,15 @@ public class Lista_ofertas extends AppCompatActivity {
 
     //Funcion para obtener ID
     public String obtenerId() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Lista_ofertas.this);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Historial.this);
         String id_preference = preferences.getString("ID", "1");
         return id_preference;
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(Historial.this, Nueva_oferta.class);
+        startActivity(intent);
+    }
 }

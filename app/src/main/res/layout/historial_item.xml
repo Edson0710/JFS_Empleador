@@ -26,9 +26,10 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/editar"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="Ver postulantes"
+            android:text="Editar"
             android:layout_alignParentRight="true"
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
@@ -36,10 +37,10 @@
             android:padding="8dp"/>
 
         <Button
-            android:id="@+id/desactivar"
+            android:id="@+id/activar"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="DESACTIVAR"
+            android:text="ACTIVAR"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="20dp"

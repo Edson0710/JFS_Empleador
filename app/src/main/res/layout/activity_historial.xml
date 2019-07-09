@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Lista_ofertas"
+    tools:context=".Historial"
     android:background="@color/colorPrimaryDark">
 
     <TextView
-        android:id="@+id/tv_Ofertas"
+        android:id="@+id/tv_historial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ofertas"
+        android:text="Historial"
         android:textSize="45sp"
         android:layout_centerHorizontal="true"
         android:textColor="#fff"
         />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview_ofertas"
+        android:id="@+id/recyclerview_historial"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tv_Ofertas">
+        android:layout_below="@+id/tv_historial">
     </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
