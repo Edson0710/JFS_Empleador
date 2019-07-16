@@ -12,35 +12,44 @@
         android:layout_height="150dp"
         android:orientation="vertical">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imagen"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"/>
+
         <TextView
             android:id="@+id/tv_nombre"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linea"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_alignLeft="@+id/imagen"
+            android:layout_marginLeft="120dp"
             android:text="Nombre"
-            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
             android:textColor="#fff"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/postulantes"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="Ver postulantes"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
+            android:id="@+id/informacion"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:text="INFORMACIÓN"
+            android:layout_alignStart="@+id/tv_nombre"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/round2"
             android:padding="8dp"/>
 
         <Button
-            android:id="@+id/desactivar"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="DESACTIVAR"
+            android:id="@+id/contratar"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:text="CONTRATAR"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="20dp"

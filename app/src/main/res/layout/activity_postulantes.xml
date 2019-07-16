@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorPrimaryDark"
-    tools:context=".Comentarios_fragment">
+    tools:context=".Postulantes"
+    android:background="@color/colorPrimaryDark">
 
     <TextView
-        android:id="@+id/tv_comentarios"
+        android:id="@+id/tv_Ofertas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Comentarios"
+            android:text="Postulantes"
         android:textSize="45sp"
         android:layout_centerHorizontal="true"
         android:textColor="#fff"
         />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview_comentarios"
+        android:id="@+id/recyclerview_postulantes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tv_comentarios">
+        android:layout_below="@+id/tv_Ofertas">
     </android.support.v7.widget.RecyclerView>
-
-
 
 </RelativeLayout>

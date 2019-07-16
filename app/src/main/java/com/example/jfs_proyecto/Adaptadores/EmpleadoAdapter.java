@@ -3,6 +3,8 @@ package com.example.jfs_proyecto.Adaptadores;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,8 +19,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.jfs_proyecto.Editar_oferta;
-import com.example.jfs_proyecto.Historial;
+import com.bumptech.glide.Glide;
+import com.example.jfs_proyecto.Informacion;
+import com.example.jfs_proyecto.Lista_ofertas;
+import com.example.jfs_proyecto.Pojos.Empleado;
 import com.example.jfs_proyecto.Pojos.Oferta;
 import com.example.jfs_proyecto.R;
 
@@ -27,53 +31,73 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.MyViewHolder> {
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class EmpleadoAdapter extends RecyclerView.Adapter<EmpleadoAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<Oferta> mData;
-    String nombre, id;
+    private List<Empleado> mData;
+    String nombre, id, correo, imagen, telefono, edad, estatura, direccion, profesion, ingreso;
+    String id_oferta;
 
-    public HistorialAdapter(Context mContext, List<Oferta> mData) {
+    public EmpleadoAdapter(Context mContext, List<Empleado> mData, String id_oferta) {
         this.mContext = mContext;
         this.mData = mData;
-
+        this.id_oferta = id_oferta;
     }
 
     @Override
-    public HistorialAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
+    public EmpleadoAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
 
         View view;
-        view = View.inflate(mContext, R.layout.historial_item, null);
+        view = View.inflate(mContext, R.layout.empleado_item, null);
 
-        final HistorialAdapter.MyViewHolder viewHolder = new HistorialAdapter.MyViewHolder(view);
+        final EmpleadoAdapter.MyViewHolder viewHolder = new EmpleadoAdapter.MyViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(final HistorialAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final EmpleadoAdapter.MyViewHolder holder, final int position) {
 
         holder.tv_nombre.setText(mData.get(position).getNombre());
+        Glide.with(mContext).load(mData.get(position).getImagen()).into(holder.imageView);
 
-        holder.activar.setOnClickListener(new View.OnClickListener() {
+        holder.informacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nombre = holder.tv_nombre.getText().toString();
                 id = mData.get(holder.getAdapterPosition()).getId();
-                mensaje();
+                correo = mData.get(holder.getAdapterPosition()).getCorreo();
+                imagen = mData.get(holder.getAdapterPosition()).getImagen();
+                telefono = mData.get(holder.getAdapterPosition()).getTelefono();
+                edad = mData.get(holder.getAdapterPosition()).getEdad();
+                estatura = mData.get(holder.getAdapterPosition()).getEstatura();
+                direccion = mData.get(holder.getAdapterPosition()).getDireccion();
+                profesion = mData.get(holder.getAdapterPosition()).getProfesion();
+                ingreso = mData.get(holder.getAdapterPosition()).getIngreso();
+                Intent intent = new Intent(mContext, Informacion.class);
+                intent.putExtra("nombre", nombre);
+                intent.putExtra("correo", correo);
+                intent.putExtra("imagen", imagen);
+                intent.putExtra("telefono", telefono);
+                intent.putExtra("edad", edad);
+                intent.putExtra("estatura", estatura);
+                intent.putExtra("direccion", direccion);
+                intent.putExtra("profesion", profesion);
+                intent.putExtra("ingreso", ingreso);
+                mContext.startActivity(intent);
 
             }
         });
 
-        holder.editar.setOnClickListener(new View.OnClickListener() {
+        holder.contratar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nombre = holder.tv_nombre.getText().toString();
                 id = mData.get(holder.getAdapterPosition()).getId();
-                Intent intent = new Intent(mContext, Editar_oferta.class);
-                intent.putExtra("nombre", nombre);
-                intent.putExtra("id", id);
-                mContext.startActivity(intent);
+                nombre = holder.tv_nombre.getText().toString();
+                mensaje();
+
             }
         });
 
@@ -87,14 +111,17 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.MyVi
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_nombre;
-        Button activar, editar;
+        Button informacion, contratar;
+        CircleImageView imageView;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
+
             tv_nombre = itemView.findViewById(R.id.tv_nombre);
-            activar = itemView.findViewById(R.id.activar);
-            editar = itemView.findViewById(R.id.editar);
+            imageView = itemView.findViewById(R.id.imagen);
+            informacion = itemView.findViewById(R.id.informacion);
+            contratar = itemView.findViewById(R.id.contratar);
 
         }
 
@@ -102,21 +129,22 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.MyVi
 
     public void mensaje(){
         AlertDialog.Builder myBuild = new AlertDialog.Builder(mContext  );
-        myBuild.setMessage("¿Estás seguro de que quieres publicar '" + nombre + "'?" );
+        myBuild.setMessage("¿Estás seguro de que quieres contratar a '" + nombre + "'?" );
         myBuild.setTitle("JFS");
         myBuild.setCancelable(false);
         myBuild.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                activar();
-                Toast.makeText(mContext, "Se ha publicado la oferta", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(mContext, Historial.class);
+                contratar();
+                Toast.makeText(mContext, "Contratación realizada", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, Lista_ofertas.class);
                 mContext.startActivity(intent);
             }
         });
         myBuild.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
             }
         });
 
@@ -124,8 +152,10 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.MyVi
         dialog.show();
     }
 
-    public void activar(){
-        String url = "http://jfsproyecto.online/actualizarOferta_empleador.php?id=" + id + "&activo=" + 1;
+    public void contratar(){
+        String id_empresa = obtenerId();
+        String url = "http://jfsproyecto.online/contratar_empleador.php?id=" + id_oferta + "&activo=" + 0 + "&empresa=" + id_empresa
+                + "&empleado=" + id;
 
         final JsonObjectRequest peticion = new JsonObjectRequest
                 (
@@ -160,6 +190,13 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.MyVi
                 });
         RequestQueue x = Volley.newRequestQueue(mContext);
         x.add(peticion);
+    }
+
+    //Funcion para obtener ID
+    public String obtenerId() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        String id_preference = preferences.getString("ID", "1");
+        return id_preference;
     }
 
 

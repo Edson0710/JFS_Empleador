@@ -2,6 +2,7 @@ package com.example.jfs_proyecto.Adaptadores;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,8 +18,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.jfs_proyecto.Crear_oferta;
+import com.example.jfs_proyecto.Historial;
 import com.example.jfs_proyecto.Lista_ofertas;
 import com.example.jfs_proyecto.Pojos.Oferta;
+import com.example.jfs_proyecto.Postulantes;
 import com.example.jfs_proyecto.R;
 
 import org.json.JSONException;
@@ -62,9 +65,19 @@ public class OfertasAdapter extends RecyclerView.Adapter<OfertasAdapter.MyViewHo
                 nombre = holder.tv_nombre.getText().toString();
                 id = mData.get(holder.getAdapterPosition()).getId();
                 mensaje();
+
             }
         });
 
+        holder.postulantes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id = mData.get(holder.getAdapterPosition()).getId();
+                Intent intent = new Intent(mContext, Postulantes.class);
+                intent.putExtra("id", id);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -75,7 +88,7 @@ public class OfertasAdapter extends RecyclerView.Adapter<OfertasAdapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_nombre;
-        Button desactivar;
+        Button desactivar, postulantes;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -83,6 +96,7 @@ public class OfertasAdapter extends RecyclerView.Adapter<OfertasAdapter.MyViewHo
 
             tv_nombre = itemView.findViewById(R.id.tv_nombre);
             desactivar = itemView.findViewById(R.id.desactivar);
+            postulantes = itemView.findViewById(R.id.postulantes);
 
         }
 
@@ -98,6 +112,8 @@ public class OfertasAdapter extends RecyclerView.Adapter<OfertasAdapter.MyViewHo
             public void onClick(DialogInterface dialog, int which) {
                 desactivar();
                 Toast.makeText(mContext, "Se ha desactivado la oferta", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, Lista_ofertas.class);
+                mContext.startActivity(intent);
             }
         });
         myBuild.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {

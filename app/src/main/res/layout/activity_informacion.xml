@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".Informacion">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imagen"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"/>
+
+    <TextView
+        android:id="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre:\n Nombre de ejemplo"
+        android:layout_marginLeft="145dp"
+        android:layout_marginTop="30dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/correo"
+        android:layout_below="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Correo:\n correo@ejemplo.com"
+        android:layout_marginLeft="145dp"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#fff"
+        android:layout_below="@+id/imagen"
+        android:layout_marginTop="15dp">
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/telefono"
+        android:layout_below="@+id/imagen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Teléfono: 3311223344"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="40dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/edad"
+        android:layout_below="@+id/telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edad: 19 años"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/estatura"
+        android:layout_below="@+id/edad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estatura: 175 cm"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/direccion"
+        android:layout_below="@+id/estatura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dirección: localidad de ejemplo"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/profesion"
+        android:layout_below="@+id/direccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profesion: MiProfesion"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/ingreso"
+        android:layout_below="@+id/profesion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingreso deseado: $5000"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+    <TextView
+    android:id="@+id/estado_civil"
+    android:layout_below="@+id/ingreso"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Estado civil: Soltero"
+    android:layout_marginLeft="30dp"
+    android:layout_marginTop="10dp"
+    android:textSize="18sp"
+    android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/nacionalidad"
+        android:layout_below="@+id/estado_civil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nacionalidad: Mexicano"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/segundo_idioma"
+        android:layout_below="@+id/nacionalidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Segundo idioma: Inglés"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/tercer_idioma"
+        android:layout_below="@+id/segundo_idioma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tercer idioma: Alemán"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/discapacidad"
+        android:layout_below="@+id/tercer_idioma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Discapacidad: Ninguna"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/nivel_estudios"
+        android:layout_below="@+id/discapacidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nivel de estudios: Primaria"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:textColor="#fff"/>
+
+
+
+</RelativeLayout>

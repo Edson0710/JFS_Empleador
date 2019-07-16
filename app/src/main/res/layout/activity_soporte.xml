@@ -10,9 +10,87 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Soporte"
+        android:textColor="#000"
         android:textSize="45sp"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
         />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contacto:"
+        android:textColor="#000"
+        android:textSize="28sp"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="50dp"/>
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iván Alejandro Hernandez Damian"
+        android:layout_below="@+id/tv1"
+        android:layout_alignLeft="@+id/tv1"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="a15300121@gmail.com"
+        android:layout_below="@+id/tv2"
+        android:layout_alignLeft="@+id/tv1"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3319703400"
+        android:layout_below="@+id/tv3"
+        android:layout_alignLeft="@+id/tv1"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_below="@+id/tv3"
+        android:id="@+id/tv5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contacto:"
+        android:textColor="#000"
+        android:textSize="28sp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="50dp"/>
+
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Erick Alberto Benites Cervantes"
+        android:layout_below="@+id/tv5"
+        android:layout_alignLeft="@+id/tv1"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tv7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="rojinegro.erick@gmail.com"
+        android:layout_below="@+id/tv6"
+        android:layout_alignLeft="@+id/tv1"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tv8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3334991760"
+        android:layout_below="@+id/tv7"
+        android:layout_alignLeft="@+id/tv1"
+        android:textSize="20sp"/>
+
 
 
 </RelativeLayout>
