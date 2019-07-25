@@ -31,12 +31,11 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.MyVi
 
     private Context mContext;
     private List<Oferta> mData;
-    String nombre, id;
+    String nombre, id, puesto, profesion, sueldo, edad, estatura;
 
     public HistorialAdapter(Context mContext, List<Oferta> mData) {
         this.mContext = mContext;
         this.mData = mData;
-
     }
 
     @Override
@@ -70,9 +69,19 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.MyVi
             public void onClick(View v) {
                 nombre = holder.tv_nombre.getText().toString();
                 id = mData.get(holder.getAdapterPosition()).getId();
+                puesto = mData.get(holder.getAdapterPosition()).getPuesto();
+                profesion = mData.get(holder.getAdapterPosition()).getProfesion();
+                sueldo = mData.get(holder.getAdapterPosition()).getSueldo();
+                edad = mData.get(holder.getAdapterPosition()).getEdad();
+                estatura = mData.get(holder.getAdapterPosition()).getEstatura();
                 Intent intent = new Intent(mContext, Editar_oferta.class);
                 intent.putExtra("nombre", nombre);
                 intent.putExtra("id", id);
+                intent.putExtra("puesto", puesto);
+                intent.putExtra("profesion", profesion);
+                intent.putExtra("sueldo", sueldo);
+                intent.putExtra("edad", edad);
+                intent.putExtra("estatura", estatura);
                 mContext.startActivity(intent);
             }
         });

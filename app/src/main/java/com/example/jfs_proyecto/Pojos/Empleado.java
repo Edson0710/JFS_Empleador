@@ -1,8 +1,8 @@
 package com.example.jfs_proyecto.Pojos;
 
 public class Empleado {
-    String nombre, imagen, id, correo, telefono, edad, estatura, direccion, profesion, ingreso;
-
+    String nombre, imagen, id, correo, telefono, edad, estatura, direccion, profesion, ingreso, estado_civil, nacionalidad, segundo_idioma, tercer_idioma, discapacidad, estudios;
+    float porcentaje;
     public Empleado() {
         this.nombre = nombre;
         this.imagen = imagen;
@@ -14,6 +14,13 @@ public class Empleado {
         this.direccion = direccion;
         this.profesion = profesion;
         this.ingreso = ingreso;
+        this.estado_civil = estado_civil;
+        this.nacionalidad = nacionalidad;
+        this.segundo_idioma = segundo_idioma;
+        this.tercer_idioma = tercer_idioma;
+        this.discapacidad = discapacidad;
+        this.estudios = estudios;
+        this.porcentaje = porcentaje;
     }
 
     public String getNombre() {
@@ -94,5 +101,61 @@ public class Empleado {
 
     public void setIngreso(String ingreso) {
         this.ingreso = ingreso;
+    }
+
+    public String getEstado_civil() {
+        return estado_civil;
+    }
+
+    public void setEstado_civil(String estado_civil) {
+        this.estado_civil = estado_civil;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
+    }
+
+    public String getSegundo_idioma() {
+        return segundo_idioma;
+    }
+
+    public void setSegundo_idioma(String segundo_idioma) {
+        this.segundo_idioma = segundo_idioma;
+    }
+
+    public String getTercer_idioma() {
+        return tercer_idioma;
+    }
+
+    public void setTercer_idioma(String tercer_idioma) {
+        this.tercer_idioma = tercer_idioma;
+    }
+
+    public String getDiscapacidad() {
+        return discapacidad;
+    }
+
+    public void setDiscapacidad(String discapacidad) {
+        this.discapacidad = discapacidad;
+    }
+
+    public String getEstudios() {
+        return estudios;
+    }
+
+    public void setEstudios(String estudios) {
+        this.estudios = estudios;
+    }
+
+    public float getPorcentaje() {
+        return porcentaje;
+    }
+
+    public void setPorcentaje(float porcentaje) {
+        this.porcentaje = porcentaje;
     }
 }

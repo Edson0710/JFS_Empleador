@@ -23,7 +23,6 @@ import com.bumptech.glide.Glide;
 import com.example.jfs_proyecto.Informacion;
 import com.example.jfs_proyecto.Lista_ofertas;
 import com.example.jfs_proyecto.Pojos.Empleado;
-import com.example.jfs_proyecto.Pojos.Oferta;
 import com.example.jfs_proyecto.R;
 
 import org.json.JSONException;
@@ -33,34 +32,35 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class EmpleadoAdapter extends RecyclerView.Adapter<EmpleadoAdapter.MyViewHolder> {
+public class BusquedaAdapter extends RecyclerView.Adapter<BusquedaAdapter.MyViewHolder> {
 
     private Context mContext;
     private List<Empleado> mData;
     String nombre, id, correo, imagen, telefono, edad, estatura, direccion, profesion, ingreso;
     String id_oferta, estado_civil, nacionalidad, segundo_idioma, tercer_idioma, discapaciodad, estudios;
 
-    public EmpleadoAdapter(Context mContext, List<Empleado> mData, String id_oferta) {
+    public BusquedaAdapter(Context mContext, List<Empleado> mData, String id_oferta) {
         this.mContext = mContext;
         this.mData = mData;
         this.id_oferta = id_oferta;
     }
 
     @Override
-    public EmpleadoAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
+    public BusquedaAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
 
         View view;
-        view = View.inflate(mContext, R.layout.empleado_item, null);
+        view = View.inflate(mContext, R.layout.busqueda_item, null);
 
-        final EmpleadoAdapter.MyViewHolder viewHolder = new EmpleadoAdapter.MyViewHolder(view);
+        final BusquedaAdapter.MyViewHolder viewHolder = new BusquedaAdapter.MyViewHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(final EmpleadoAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final BusquedaAdapter.MyViewHolder holder, final int position) {
 
         holder.tv_nombre.setText(mData.get(position).getNombre());
+        holder.tv_porcentaje.setText("Porcentaje:" + mData.get(position).getPorcentaje() + "%");
         Glide.with(mContext).load(mData.get(position).getImagen()).into(holder.imageView);
 
         holder.informacion.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +122,7 @@ public class EmpleadoAdapter extends RecyclerView.Adapter<EmpleadoAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_nombre;
+        TextView tv_nombre, tv_porcentaje;
         Button informacion, contratar;
         CircleImageView imageView;
 
@@ -131,6 +131,7 @@ public class EmpleadoAdapter extends RecyclerView.Adapter<EmpleadoAdapter.MyView
 
 
             tv_nombre = itemView.findViewById(R.id.tv_nombre);
+            tv_porcentaje = itemView.findViewById(R.id.tv_porcentaje);
             imageView = itemView.findViewById(R.id.imagen);
             informacion = itemView.findViewById(R.id.informacion);
             contratar = itemView.findViewById(R.id.contratar);

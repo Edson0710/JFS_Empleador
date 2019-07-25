@@ -14,7 +14,7 @@
         />
 
     <TextView
-        android:id="@+id/Nav_header_tview_editar"
+        android:id="@+id/editar"
         android:layout_marginLeft="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

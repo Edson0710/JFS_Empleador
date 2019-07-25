@@ -1,8 +1,12 @@
 package com.example.jfs_proyecto;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,20 +15,40 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Vista_principal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
-    TextView nombre_tv;
+    TextView nombre_tv, editar;
     CircleImageView imagen;
     String id, nombre, imagenUrl;
+    private Bitmap bitmap;
+    private int PICK_IMAGE_REQUEST = 1;
+    private String UPLOAD_URL = "http://jfsproyecto.online/editarImagen_empleador.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +73,15 @@ public class Vista_principal extends AppCompatActivity implements NavigationView
         View hView = navigationView.getHeaderView(0);
         nombre_tv = hView.findViewById(R.id.Nav_header_tview_nombre);
         imagen = hView.findViewById(R.id.Nav_header_imagen_imagen);
+        editar = hView.findViewById(R.id.editar);
         nombre_tv.setText(nombre);
-        Glide.with(getApplicationContext()).load(imagenUrl).into(imagen);
+        Picasso.with(Vista_principal.this).load(imagenUrl).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imagen);
+        editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFileChooser();
+            }
+        });
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toogle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -95,10 +126,93 @@ public class Vista_principal extends AppCompatActivity implements NavigationView
 
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+        }
+    }
+
+    //---------------------------Imagen-------------------------------------------------------------
+
+    public String getStringImagen(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+    private void showFileChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Imagen"), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            try {
+                //Cómo obtener el mapa de bits de la Galería
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                //Configuración del mapa de bits en ImageView
+                imagen.setImageBitmap(bitmap);
+                uploadImage();
+                recreate();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 //--------------------------------------Funciones-------------------------------------------------
+
+    private void uploadImage() {
+        //Mostrar el diálogo de progreso
+        final ProgressDialog loading = ProgressDialog.show(this, "Subiendo...", "Espere por favor...", false, false);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UPLOAD_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        //Descartar el diálogo de progreso
+                        loading.dismiss();
+                        //Mostrando el mensaje de la respuesta
+                        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        //Descartar el diálogo de progreso
+                        loading.dismiss();
+
+                        //Showing toast
+                        Toast.makeText(getApplicationContext(), volleyError.getMessage().toString(), Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                //Convertir bits a cadena
+                String imagen = getStringImagen(bitmap);
+
+
+                //Creación de parámetros
+                Map<String, String> params = new Hashtable<String, String>();
+
+                //Agregando de parámetros
+                params.put("id", id);
+                params.put("imagen", imagen);
+                //Parámetros de retorno
+                return params;
+            }
+        };
+
+        //Creación de una cola de solicitudes
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        //Agregar solicitud a la cola
+        requestQueue.add(stringRequest);
+    }
+
 
     //Funcion para obtener ID
     public String obtenerId() {

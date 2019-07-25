@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="EstadoCivil_opciones">
+        <item>Estado Civil</item>
+        <item>Soltero</item>
+        <item>Casado</item>
+        <item>Union libre</item>
+        <item>Viudo</item>
+        <item>Divorciado</item>
+    </string-array>
+
+    <string-array name="Nacionalidad_opciones">
+        <item>Nacionalidad</item>
+        <item>Aleman</item>
+        <item>Argentino</item>
+        <item>Brasileño</item>
+        <item>Canadiense</item>
+        <item>Chileno</item>
+        <item>Chino</item>
+        <item>Español</item>
+        <item>Estadounidense</item>
+        <item>Frances</item>
+        <item>Indio</item>
+        <item>Italiano</item>
+        <item>Japones</item>
+        <item>Mexicano</item>
+        <item>Ruso</item>
+        <item>Otro</item>
+    </string-array>
+
+
+    <string-array name="Discapacidades_opciones">
+        <item>Seleccione una discapacidad</item>
+        <item>Motriz</item>
+        <item>Visual</item>
+        <item>Auditiva</item>
+        <item>Verbal</item>
+        <item>Mental Intelectual</item>
+        <item>Mental Psicosocial</item>
+        <item>Ninguna</item>
+    </string-array>
+
+
+    <string-array name="SegundoIdioma_opciones">
+        <item>Segundo idioma que domine</item>
+        <item>Ninguno</item>
+        <item>Ingles</item>
+        <item>Frances</item>
+        <item>Aleman</item>
+        <item>Portugues</item>
+        <item>Chino</item>
+        <item>Japones</item>
+        <item>Ruso</item>
+        <item>Italiano</item>
+        <item>Otro</item>
+    </string-array>
+
+
+    <string-array name="TercerIdioma_opciones">
+        <item>Tercer idioma que domine</item>
+        <item>Ninguno</item>
+        <item>Ingles</item>
+        <item>Frances</item>
+        <item>Aleman</item>
+        <item>Portugues</item>
+        <item>Chino</item>
+        <item>Japones</item>
+        <item>Ruso</item>
+        <item>Italiano</item>
+        <item>Otro</item>
+    </string-array>
+
+
+    <string-array name="NivelEstudios_opciones">
+        <item>Nivel de estudios maximos</item>
+        <item>Preescolar</item>
+        <item>Primaria</item>
+        <item>Secundaria</item>
+        <item>Bachillerato general</item>
+        <item>Bachillerato tecnologico</item>
+        <item>Profesional tecnico</item>
+        <item>Licenciatura</item>
+        <item>Maestria</item>
+        <item>Doctorado</item>
+        <item>Otro</item>
+    </string-array>
+
+    <string-array name="Importancia_opciones">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+
+
+</resources>

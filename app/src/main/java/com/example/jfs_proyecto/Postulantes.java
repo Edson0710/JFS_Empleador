@@ -66,6 +66,12 @@ public class Postulantes extends AppCompatActivity {
                         empleado.setDireccion(jsonObject.getString("direccion"));
                         empleado.setProfesion(jsonObject.getString("profesion"));
                         empleado.setIngreso(jsonObject.getString("ingreso_deseado"));
+                        empleado.setEstado_civil(jsonObject.getString("estado_civil"));
+                        empleado.setNacionalidad(jsonObject.getString("nacionalidad"));
+                        empleado.setSegundo_idioma(jsonObject.getString("segundo_idioma"));
+                        empleado.setTercer_idioma(jsonObject.getString("tercer_idioma"));
+                        empleado.setDiscapacidad(jsonObject.getString("discapacidad"));
+                        empleado.setEstudios(jsonObject.getString("nivel_estudios"));
                         lista.add(empleado);
 
 

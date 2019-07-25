@@ -1,17 +1,308 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Perfil_fragment">
 
-    <TextView
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Perfil"
-        android:textSize="45sp"
-        android:layout_centerInParent="true"
-        />
+        android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Información"
+                android:textSize="45sp" />
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titulo"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Nombre:"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Nombre de la empresa" />
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nombre"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Correo:"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/correo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Correo de la empresa" />
+
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/correo"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Giro:"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/giro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv3"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Giro de la empresa" />
+
+            <TextView
+                android:id="@+id/tv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/giro"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Teléfono:"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/telefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv4"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Teléfono de la empresa"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/tv5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/telefono"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Dirección:"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/direccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv5"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Dirección de la empresa" />
+
+            <TextView
+                android:id="@+id/tv6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/direccion"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Transporte:"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <RadioGroup
+                android:id="@+id/group_transporte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv6"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/transporte1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:text="Sí " />
+
+                <RadioButton
+                    android:id="@+id/transporte2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:text="No " />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/group_transporte"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Comisiones:"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <RadioGroup
+                android:id="@+id/group_comisiones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv7"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/comisiones1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:text="Sí " />
+
+                <RadioButton
+                    android:id="@+id/comisiones2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:text="No " />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/group_comisiones"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Bonos:"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <RadioGroup
+                android:id="@+id/group_bonos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv8"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/bonos1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:text="Sí " />
+
+                <RadioButton
+                    android:id="@+id/bonos2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:text="No " />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/group_bonos"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Otro:"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/otro1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv9"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Otra opción" />
+
+            <TextView
+                android:id="@+id/tv10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/otro1"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Otro:"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/otro2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv10"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Otra opción" />
+
+            <TextView
+                android:id="@+id/tv11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/otro2"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Otro:"
+                android:textColor="#000"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/otro3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv11"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:hint="Otra opción" />
+
+
+            <Button
+                android:id="@+id/guardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/otro3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/round1"
+                android:padding="8dp"
+                android:text="Guardar cambios"
+                android:textColor="#fff" />
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

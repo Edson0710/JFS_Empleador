@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@color/colorPrimary"
+    android:id="@+id/container">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imagen"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linea"
+            android:layout_marginTop="15dp"
+            android:layout_alignLeft="@+id/imagen"
+            android:layout_marginLeft="120dp"
+            android:text="Nombre"
+            android:layout_alignParentRight="true"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_porcentaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_nombre"
+            android:layout_marginTop="5dp"
+            android:layout_alignLeft="@+id/imagen"
+            android:layout_marginLeft="120dp"
+            android:text="Porcentaje= 50%"
+            android:layout_alignParentRight="true"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/informacion"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:text="INFORMACIÓN"
+            android:layout_alignStart="@+id/tv_nombre"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/round2"
+            android:padding="8dp"/>
+
+        <Button
+            android:id="@+id/contratar"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:text="CONTRATAR"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/round2"
+            android:padding="8dp"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_alignParentBottom="true">
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/linea"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_alignParentTop="true">
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
