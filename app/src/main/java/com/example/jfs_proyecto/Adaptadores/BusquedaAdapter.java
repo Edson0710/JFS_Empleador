@@ -103,15 +103,6 @@ public class BusquedaAdapter extends RecyclerView.Adapter<BusquedaAdapter.MyView
             }
         });
 
-        holder.contratar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                id = mData.get(holder.getAdapterPosition()).getId();
-                nombre = holder.tv_nombre.getText().toString();
-                mensaje();
-
-            }
-        });
 
     }
 
@@ -134,8 +125,6 @@ public class BusquedaAdapter extends RecyclerView.Adapter<BusquedaAdapter.MyView
             tv_porcentaje = itemView.findViewById(R.id.tv_porcentaje);
             imageView = itemView.findViewById(R.id.imagen);
             informacion = itemView.findViewById(R.id.informacion);
-            contratar = itemView.findViewById(R.id.contratar);
-
         }
 
     }

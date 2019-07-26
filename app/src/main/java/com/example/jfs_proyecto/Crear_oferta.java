@@ -91,6 +91,7 @@ public class Crear_oferta extends AppCompatActivity {
                 intent.putExtra("discapacidad", Discapacidades);
                 intent.putExtra("ImportanciaDiscapacidad", ImportanciaDiscapacidad);
                 intent.putExtra("total", total);
+                intent.putExtra("desaparecer", 1);
                 startActivity(intent);
             }
         });
