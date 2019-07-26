@@ -70,6 +70,7 @@ public class Comentarios_fragment extends Fragment {
                         Comentario comentario = new Comentario();
                         comentario.setComentario(jsonObject.getString("comentario"));
                         comentario.setCalificacion(jsonObject.getString("calificacion"));
+                        comentario.setId(jsonObject.getString("id"));
 
                         lista.add(comentario);
 

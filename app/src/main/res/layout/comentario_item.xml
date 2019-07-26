@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     android:id="@+id/container">
 
@@ -14,7 +14,7 @@
 
         <TextView
             android:layout_below="@+id/linea"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/tv_calificacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,6 +35,18 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/reportar"
+            android:layout_below="@+id/tv_comentarios"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:text="reportar"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/round2"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"
@@ -49,6 +61,8 @@
             android:background="@color/colorPrimaryDark"
             android:layout_alignParentTop="true">
         </RelativeLayout>
+
+
 
 
 
