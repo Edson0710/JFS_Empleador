@@ -36,8 +36,15 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         if (obtenerEstado()) {
-            Intent intent = new Intent(Login.this, Vista_principal.class);
-            startActivity(intent);
+            int tipo = obtenerTipo();
+            if (tipo==0) {
+                Intent intent = new Intent(Login.this, Vista_principal.class);
+                startActivity(intent);
+            }
+            if (tipo==1) {
+                Intent intent = new Intent(Login.this, Admin.class);
+                startActivity(intent);
+            }
         }
 
         correo_etxt = findViewById(R.id.Login_etxt_correo);
@@ -86,7 +93,6 @@ public class Login extends AppCompatActivity {
     public void login() {
         String url = "http://jfsproyecto.online/login_empleador.php?correo=" + correo +
                 "&pass=" + pass;
-        final Intent intent = new Intent(Login.this, Vista_principal.class);
         JsonObjectRequest peticion = new JsonObjectRequest
                 (
                         Request.Method.GET,
@@ -103,11 +109,20 @@ public class Login extends AppCompatActivity {
                                             String id = response.getString("id");
                                             String nombre = response.getString("nombre");
                                             String imagenUrl = response.getString("imagen");
+                                            int tipo = response.getInt("tipo");
                                             guardarId(id);
                                             guardarNombre(nombre);
                                             guardarUrl(imagenUrl);
-                                            intent.putExtra("imagenUrl", imagenUrl);
-                                            startActivity(intent);
+                                            guardarTipo(tipo);
+                                            if (tipo==0) {
+                                                Intent intent = new Intent(Login.this, Vista_principal.class);
+                                                intent.putExtra("imagenUrl", imagenUrl);
+                                                startActivity(intent);
+                                            }
+                                            if (tipo==1) {
+                                                Intent intent = new Intent(Login.this, Admin.class);
+                                                startActivity(intent);
+                                            }
                                             break;
                                         case "FALLIDO":
                                             Toast.makeText(Login.this, "Datos incorrectos", Toast.LENGTH_SHORT).show();
@@ -154,6 +169,14 @@ public class Login extends AppCompatActivity {
         myEditor.commit();
     }
 
+    //Funcion para guardar la imagen
+    public void guardarTipo(int my_id) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
+        SharedPreferences.Editor myEditor = preferences.edit();
+        myEditor.putInt("TIPO", my_id);
+        myEditor.commit();
+    }
+
     //Funcion para no poder regresar al activity anterior
     @Override
     public void onBackPressed() {
@@ -175,5 +198,11 @@ public class Login extends AppCompatActivity {
     public boolean obtenerEstado() {
         SharedPreferences preferences = getSharedPreferences(STRING_PREFERENCES, MODE_PRIVATE);
         return preferences.getBoolean(PREFERENCE_ESTADO_BUTTON, false);
+    }
+
+    public int obtenerTipo() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Login.this);
+        int id_preference = preferences.getInt("TIPO", 1);
+        return id_preference;
     }
 }

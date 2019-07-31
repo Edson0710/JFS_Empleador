@@ -1,9 +1,9 @@
 package com.example.jfs_proyecto.Pojos;
 
 public class Oferta {
-    private String nombre, id, puesto, profesion, sueldo, edad, estatura;
+    private String nombre, id, puesto, profesion, sueldo, edad, estatura, nacionalidad, estado, segundo, tercer, discapacidades, estudios;
 
-    public Oferta(String nombre, String id, String puesto, String profesion, String sueldo, String edad, String estatura) {
+    public Oferta(String nombre, String id, String puesto, String profesion, String sueldo, String edad, String estatura, String nacionalidad, String estado, String segundo, String tercer, String discapacidades, String estudios) {
         this.nombre = nombre;
         this.id = id;
         this.puesto = puesto;
@@ -11,6 +11,12 @@ public class Oferta {
         this.sueldo = sueldo;
         this.edad = edad;
         this.estatura = estatura;
+        this.nacionalidad = nacionalidad;
+        this.estado = estado;
+        this.segundo = segundo;
+        this.tercer = tercer;
+        this.discapacidades = discapacidades;
+        this.estudios = estudios;
     }
 
     public Oferta() {
@@ -70,5 +76,53 @@ public class Oferta {
 
     public void setEstatura(String estatura) {
         this.estatura = estatura;
+    }
+
+    public String getNacionalidad() {
+        return nacionalidad;
+    }
+
+    public void setNacionalidad(String nacionalidad) {
+        this.nacionalidad = nacionalidad;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getSegundo() {
+        return segundo;
+    }
+
+    public void setSegundo(String segundo) {
+        this.segundo = segundo;
+    }
+
+    public String getTercer() {
+        return tercer;
+    }
+
+    public void setTercer(String tercer) {
+        this.tercer = tercer;
+    }
+
+    public String getDiscapacidades() {
+        return discapacidades;
+    }
+
+    public void setDiscapacidades(String discapacidades) {
+        this.discapacidades = discapacidades;
+    }
+
+    public String getEstudios() {
+        return estudios;
+    }
+
+    public void setEstudios(String estudios) {
+        this.estudios = estudios;
     }
 }

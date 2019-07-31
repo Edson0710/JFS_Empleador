@@ -4,10 +4,10 @@
     <string-array name="EstadoCivil_opciones">
         <item>Estado Civil</item>
         <item>Soltero</item>
+        <item>Divorciado</item>
+        <item>Viudo</item>
         <item>Casado</item>
         <item>Union libre</item>
-        <item>Viudo</item>
-        <item>Divorciado</item>
     </string-array>
 
     <string-array name="Nacionalidad_opciones">

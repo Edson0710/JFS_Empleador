@@ -65,6 +65,12 @@ public class Historial extends AppCompatActivity {
                         oferta.setSueldo(jsonObject.getString("sueldo"));
                         oferta.setEdad(jsonObject.getString("edad"));
                         oferta.setEstatura(jsonObject.getString("estatura"));
+                        oferta.setNacionalidad(jsonObject.getString("nacionalidad"));
+                        oferta.setEstado(jsonObject.getString("estado"));
+                        oferta.setSegundo(jsonObject.getString("segundo"));
+                        oferta.setTercer(jsonObject.getString("tercer"));
+                        oferta.setDiscapacidades(jsonObject.getString("discapacidades"));
+                        oferta.setEstudios(jsonObject.getString("estudios"));
 
                         lista.add(oferta);
 

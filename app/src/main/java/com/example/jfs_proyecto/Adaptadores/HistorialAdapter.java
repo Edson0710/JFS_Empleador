@@ -31,7 +31,7 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.MyVi
 
     private Context mContext;
     private List<Oferta> mData;
-    String nombre, id, puesto, profesion, sueldo, edad, estatura;
+    String nombre, id, puesto, profesion, sueldo, edad, estatura, nacionalidad, estado, segundo, tercer, discapacidades, estudios;
 
     public HistorialAdapter(Context mContext, List<Oferta> mData) {
         this.mContext = mContext;
@@ -74,6 +74,12 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.MyVi
                 sueldo = mData.get(holder.getAdapterPosition()).getSueldo();
                 edad = mData.get(holder.getAdapterPosition()).getEdad();
                 estatura = mData.get(holder.getAdapterPosition()).getEstatura();
+                nacionalidad = mData.get(holder.getAdapterPosition()).getNacionalidad();
+                estado = mData.get(holder.getAdapterPosition()).getEstado();
+                segundo = mData.get(holder.getAdapterPosition()).getSegundo();
+                tercer = mData.get(holder.getAdapterPosition()).getTercer();
+                discapacidades = mData.get(holder.getAdapterPosition()).getDiscapacidades();
+                estudios = mData.get(holder.getAdapterPosition()).getEstudios();
                 Intent intent = new Intent(mContext, Editar_oferta.class);
                 intent.putExtra("nombre", nombre);
                 intent.putExtra("id", id);
@@ -82,6 +88,12 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.MyVi
                 intent.putExtra("sueldo", sueldo);
                 intent.putExtra("edad", edad);
                 intent.putExtra("estatura", estatura);
+                intent.putExtra("nacionalidad", nacionalidad);
+                intent.putExtra("estado", estado);
+                intent.putExtra("segundo", segundo);
+                intent.putExtra("tercer", tercer);
+                intent.putExtra("discapacidades", discapacidades);
+                intent.putExtra("estudios", estudios);
                 mContext.startActivity(intent);
             }
         });

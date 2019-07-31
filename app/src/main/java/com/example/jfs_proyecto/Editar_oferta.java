@@ -42,6 +42,12 @@ public class Editar_oferta extends AppCompatActivity {
         edad = getIntent().getExtras().getString("edad");
         estatura = getIntent().getExtras().getString("estatura");
         id = getIntent().getExtras().getString("id");
+        Nacionalidad = getIntent().getExtras().getString("nacionalidad");
+        EstadoCivil = getIntent().getExtras().getString("estado");
+        SegundoIdioma = getIntent().getExtras().getString("segundo");
+        Tercer_idioma = getIntent().getExtras().getString("tercer");
+        Discapacidades = getIntent().getExtras().getString("discapacidades");
+        NivelEstudios = getIntent().getExtras().getString("estudios");
 
         et_nombre = findViewById(R.id.nombre);
         et_puesto = findViewById(R.id.puesto);
@@ -76,6 +82,7 @@ public class Editar_oferta extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter0 = ArrayAdapter.createFromResource
                 (Editar_oferta.this, R.array.Nacionalidad_opciones, android.R.layout.simple_spinner_item);
         Nacionalidad_opciones.setAdapter(adapter0);
+        Nacionalidad_opciones.setSelection(Integer.parseInt(Nacionalidad));
         Nacionalidad_opciones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -131,6 +138,7 @@ public class Editar_oferta extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
                 (Editar_oferta.this, R.array.EstadoCivil_opciones, android.R.layout.simple_spinner_item);
         EstadoCivil_opciones.setAdapter(adapter);
+        EstadoCivil_opciones.setSelection(Integer.parseInt(EstadoCivil));
         EstadoCivil_opciones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -164,6 +172,7 @@ public class Editar_oferta extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource
                 (Editar_oferta.this, R.array.Discapacidades_opciones, android.R.layout.simple_spinner_item);
         Discapacidades_opciones.setAdapter(adapter1);
+        Discapacidades_opciones.setSelection(Integer.parseInt(Discapacidades));
         Discapacidades_opciones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -201,6 +210,7 @@ public class Editar_oferta extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource
                 (Editar_oferta.this, R.array.SegundoIdioma_opciones, android.R.layout.simple_spinner_item);
         SegundoIdioma_opciones.setAdapter(adapter2);
+        SegundoIdioma_opciones.setSelection(Integer.parseInt(SegundoIdioma));
         SegundoIdioma_opciones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -243,6 +253,7 @@ public class Editar_oferta extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource
                 (Editar_oferta.this, R.array.TercerIdioma_opciones, android.R.layout.simple_spinner_item);
         TercerIdioma_opciones.setAdapter(adapter3);
+        TercerIdioma_opciones.setSelection(Integer.parseInt(Tercer_idioma));
         TercerIdioma_opciones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -285,6 +296,7 @@ public class Editar_oferta extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource
                 (Editar_oferta.this, R.array.NivelEstudios_opciones, android.R.layout.simple_spinner_item);
         NivelEstudios_opciones.setAdapter(adapter4);
+        NivelEstudios_opciones.setSelection(Integer.parseInt(NivelEstudios));
         NivelEstudios_opciones.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

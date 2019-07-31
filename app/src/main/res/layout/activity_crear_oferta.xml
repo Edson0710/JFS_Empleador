@@ -15,7 +15,18 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/tv0"
+                android:textStyle="italic"
+                android:textAlignment="center"
+                android:layout_marginTop="20dp"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nota: La prioridad sólo se usa para la opcion de Busqueda automática, no afecta a la hora de que se publica la oferta.\n 1 es la prioridad más baja, mientras que 5 es la prioridad más alta."/>
+
+            <TextView
                 android:id="@+id/tv1"
+                android:layout_below="@+id/tv0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
