@@ -25,6 +25,8 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Crear_oferta extends AppCompatActivity {
     Spinner EstadoCivil_opciones, Discapacidades_opciones, SegundoIdioma_opciones, TercerIdioma_opciones, NivelEstudios_opciones, Nacionalidad_opciones;
@@ -543,6 +545,7 @@ public class Crear_oferta extends AppCompatActivity {
 
     //Metodo para publicar la oferta
     public void crear() {
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
         nombre = et_nombre.getText().toString().trim();
         puesto = et_puesto.getText().toString().trim();
         profesion = et_profesion.getText().toString().trim();
@@ -555,7 +558,7 @@ public class Crear_oferta extends AppCompatActivity {
                     + "&puesto=" + URLEncoder.encode(puesto, "UTF-8") + "&profesion=" + URLEncoder.encode(profesion,"UTF-8")
                     + "&sueldo=" + sueldo + "&edad=" + edad + "&estatura=" + estatura + "&nacionalidad=" + Nacionalidad
                     + "&estado=" + EstadoCivil + "&segundo=" + SegundoIdioma + "&tercer=" + Tercer_idioma + "&discapacidad=" + Discapacidades
-                    + "&estudios=" + NivelEstudios;
+                    + "&estudios=" + NivelEstudios + "&fecha=" + URLEncoder.encode(date, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
