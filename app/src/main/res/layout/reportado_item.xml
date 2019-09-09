@@ -9,63 +9,68 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:orientation="vertical">
 
         <TextView
-            android:layout_below="@+id/linea"
-            android:layout_marginTop="10dp"
             android:id="@+id/tv_calificacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calificación: "
+            android:layout_below="@+id/linea"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="Calificación: "
             android:textColor="#fff"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_comentario"
-            android:layout_below="@+id/tv_calificacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Comentario"
+            android:layout_below="@+id/tv_calificacion"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
+            android:layout_above="@+id/omitir"
+            android:layout_marginBottom="10dp"
+            android:text="Comentario"
             android:textColor="#fff"
             android:textSize="20sp"
             android:textStyle="bold" />
+        <Button
+            android:id="@+id/omitir"
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/tv_comentarios"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/round2"
+            android:text="Omitir comentario" />
 
         <Button
             android:id="@+id/borrar"
-            android:layout_below="@+id/tv_comentarios"
-            android:layout_width="80dp"
+            android:layout_width="180dp"
             android:layout_height="30dp"
-            android:text="Borrar"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/tv_comentarios"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/round2"/>
+            android:background="@drawable/round2"
+            android:text="Borrar comentario" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="@color/colorPrimaryDark"
-            android:layout_alignParentBottom="true">
-        </RelativeLayout>
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorPrimaryDark"></RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/linea"
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="@color/colorPrimaryDark"
-            android:layout_alignParentTop="true">
-        </RelativeLayout>
-
-
-
-
-
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimaryDark"></RelativeLayout>
 
 
     </RelativeLayout>

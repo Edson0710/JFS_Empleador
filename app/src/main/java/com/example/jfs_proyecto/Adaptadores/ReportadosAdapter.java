@@ -54,7 +54,7 @@ public class ReportadosAdapter extends RecyclerView.Adapter<ReportadosAdapter.My
     }
 
     @Override
-    public void onBindViewHolder(ReportadosAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final ReportadosAdapter.MyViewHolder holder, final int position) {
 
         holder.tv_comentarios.setText(mData.get(position).getComentario());
         holder.tv_calificacion.setText("Calificacion: " + mData.get(position).getCalificacion());
@@ -65,6 +65,14 @@ public class ReportadosAdapter extends RecyclerView.Adapter<ReportadosAdapter.My
                 id = mData.get(position).getId();
                 mensaje();
 
+            }
+        });
+
+        holder.omitir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id = mData.get(position).getId();
+                mensaje2();
             }
         });
     }
@@ -78,7 +86,7 @@ public class ReportadosAdapter extends RecyclerView.Adapter<ReportadosAdapter.My
 
         TextView tv_comentarios;
         TextView tv_calificacion;
-        Button reportar;
+        Button reportar, omitir;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -87,6 +95,7 @@ public class ReportadosAdapter extends RecyclerView.Adapter<ReportadosAdapter.My
             tv_calificacion = itemView.findViewById(R.id.tv_calificacion);
             tv_comentarios = itemView.findViewById(R.id.tv_comentario);
             reportar = itemView.findViewById(R.id.borrar);
+            omitir = itemView.findViewById(R.id.omitir);
 
         }
 
@@ -118,7 +127,7 @@ public class ReportadosAdapter extends RecyclerView.Adapter<ReportadosAdapter.My
     }
 
     public void eliminar() {
-        String url = "http://jfsproyecto.online/borrarComentario_empleador.php?id=" + id ;
+        String url = "http://jfsproyecto.online/borrarComentario_empleador.php?id=" + id;
 
         JsonObjectRequest peticion = new JsonObjectRequest
                 (
@@ -153,6 +162,68 @@ public class ReportadosAdapter extends RecyclerView.Adapter<ReportadosAdapter.My
         RequestQueue x = Volley.newRequestQueue(mContext);
         x.add(peticion);
     }
+
+    public void mensaje2() {
+        AlertDialog.Builder myBuild = new AlertDialog.Builder(mContext);
+        myBuild.setMessage("¿Estás seguro de que quieres omitir este comentario?");
+        myBuild.setTitle("JFS");
+        myBuild.setCancelable(false);
+        myBuild.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                omitir();
+                Intent intent = new Intent(mContext, Reportados.class);
+                mContext.startActivity(intent);
+
+            }
+        });
+        myBuild.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        AlertDialog dialog = myBuild.create();
+        dialog.show();
+    }
+
+    public void omitir() {
+        String url = "http://jfsproyecto.online/omitirComentario_empleador.php?id=" + id;
+
+        JsonObjectRequest peticion = new JsonObjectRequest
+                (
+                        Request.Method.GET,
+                        url,
+                        null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    String valor = response.getString("Estado");
+
+                                    switch (valor) {
+                                        case "EXITOSO":
+                                            break;
+                                        case "FALLIDO":
+                                            break;
+                                    }
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        , new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Toast.makeText(Login.this, "Error conexión", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        RequestQueue x = Volley.newRequestQueue(mContext);
+        x.add(peticion);
+    }
+
 
 }
 

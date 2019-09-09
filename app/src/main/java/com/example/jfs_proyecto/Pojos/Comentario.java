@@ -4,11 +4,13 @@ public class Comentario {
     private String comentario;
     private String calificacion;
     private String id;
+    private int estado;
 
     public Comentario() {
         this.comentario = comentario;
         this.calificacion = calificacion;
         this.id = id;
+        this.estado = estado;
     }
 
     public String getComentario() {
@@ -33,5 +35,13 @@ public class Comentario {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 }

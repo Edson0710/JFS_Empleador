@@ -62,7 +62,7 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         holder.tv_comentarios.setText(mData.get(position).getComentario());
-        holder.tv_calificacion.setText("Calificacion: "+mData.get(position).getCalificacion());
+        holder.tv_calificacion.setText("Calificacion: " + mData.get(position).getCalificacion());
 
         holder.reportar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,11 +70,14 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
                 id = mData.get(position).getId();
                 nombre = obtenerNombre();
                 comentario = mData.get(position).getComentario();
-                Toast.makeText(mContext, ""+id, Toast.LENGTH_SHORT).show();
-                Toast.makeText(mContext, ""+comentario, Toast.LENGTH_SHORT).show();
-                Toast.makeText(mContext, ""+nombre, Toast.LENGTH_SHORT).show();
-                mensaje();
-        }
+                int estado = mData.get(position).getEstado();
+                if (estado == 0) {
+                    mensaje();
+                    mData.get(position).setEstado(1);
+                } else {
+                    Toast.makeText(mContext, "Este comentario ya ha sido reportado", Toast.LENGTH_LONG).show();
+                }
+            }
         });
     }
 
@@ -115,9 +118,9 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
         return id_preference;
     }
 
-    public void mensaje(){
-        AlertDialog.Builder myBuild = new AlertDialog.Builder(mContext  );
-        myBuild.setMessage("¿Estás seguro de que quieres reportar este comentario?" );
+    public void mensaje() {
+        AlertDialog.Builder myBuild = new AlertDialog.Builder(mContext);
+        myBuild.setMessage("¿Estás seguro de que quieres reportar este comentario?");
         myBuild.setTitle("JFS");
         myBuild.setCancelable(false);
         myBuild.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
