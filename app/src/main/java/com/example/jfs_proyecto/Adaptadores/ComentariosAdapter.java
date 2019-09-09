@@ -1,9 +1,12 @@
 package com.example.jfs_proyecto.Adaptadores;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -61,6 +64,13 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
+        int estado = mData.get(position).getEstado();
+        if (estado == 0){
+            holder.reportar.setBackgroundColor(Color.parseColor("#8bc34a"));
+        } else {
+            holder.reportar.setBackgroundColor(Color.parseColor("#f44336"));
+        }
+
         holder.tv_comentarios.setText(mData.get(position).getComentario());
         holder.tv_calificacion.setText("Calificacion: " + mData.get(position).getCalificacion());
 
@@ -72,8 +82,7 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
                 comentario = mData.get(position).getComentario();
                 int estado = mData.get(position).getEstado();
                 if (estado == 0) {
-                    mensaje();
-                    mData.get(position).setEstado(1);
+                    mensaje(position);
                 } else {
                     Toast.makeText(mContext, "Este comentario ya ha sido reportado", Toast.LENGTH_LONG).show();
                 }
@@ -118,7 +127,7 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
         return id_preference;
     }
 
-    public void mensaje() {
+    public void mensaje(final int position) {
         AlertDialog.Builder myBuild = new AlertDialog.Builder(mContext);
         myBuild.setMessage("¿Estás seguro de que quieres reportar este comentario?");
         myBuild.setTitle("JFS");
@@ -127,6 +136,7 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 correo();
+                mData.get(position).setEstado(1);
                 Toast.makeText(mContext, "Comentario reportado", Toast.LENGTH_SHORT).show();
             }
         });
