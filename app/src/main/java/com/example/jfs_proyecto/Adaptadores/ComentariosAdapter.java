@@ -24,6 +24,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.jfs_proyecto.Comentarios_fragment;
+import com.example.jfs_proyecto.Crear_oferta;
 import com.example.jfs_proyecto.Lista_ofertas;
 import com.example.jfs_proyecto.Login;
 import com.example.jfs_proyecto.Pojos.Comentario;
@@ -62,7 +64,7 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
         int estado = mData.get(position).getEstado();
         if (estado == 0){
@@ -82,7 +84,7 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
                 comentario = mData.get(position).getComentario();
                 int estado = mData.get(position).getEstado();
                 if (estado == 0) {
-                    mensaje(position);
+                    mensaje(holder, position);
                 } else {
                     Toast.makeText(mContext, "Este comentario ya ha sido reportado", Toast.LENGTH_LONG).show();
                 }
@@ -127,7 +129,7 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
         return id_preference;
     }
 
-    public void mensaje(final int position) {
+    public void mensaje(final MyViewHolder holder, final int position) {
         AlertDialog.Builder myBuild = new AlertDialog.Builder(mContext);
         myBuild.setMessage("¿Estás seguro de que quieres reportar este comentario?");
         myBuild.setTitle("JFS");
@@ -137,6 +139,7 @@ public class ComentariosAdapter extends RecyclerView.Adapter<ComentariosAdapter.
             public void onClick(DialogInterface dialog, int which) {
                 correo();
                 mData.get(position).setEstado(1);
+                holder.reportar.setBackgroundColor(Color.parseColor("#f44336"));
                 Toast.makeText(mContext, "Comentario reportado", Toast.LENGTH_SHORT).show();
             }
         });
