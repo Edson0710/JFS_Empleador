@@ -552,6 +552,7 @@ public class Crear_oferta extends AppCompatActivity {
         sueldo = et_sueldo.getText().toString().trim();
         edad = et_edad.getText().toString().trim();
         estatura = et_estatura.getText().toString().trim();
+        notificacion();
         String url = null;
         try {
             url = "http://jfsproyecto.online/crearOferta_empleador.php?nombre=" + URLEncoder.encode(nombre, "UTF-8") + "&id=" + id
@@ -559,6 +560,49 @@ public class Crear_oferta extends AppCompatActivity {
                     + "&sueldo=" + sueldo + "&edad=" + edad + "&estatura=" + estatura + "&nacionalidad=" + Nacionalidad
                     + "&estado=" + EstadoCivil + "&segundo=" + SegundoIdioma + "&tercer=" + Tercer_idioma + "&discapacidad=" + Discapacidades
                     + "&estudios=" + NivelEstudios + "&fecha=" + URLEncoder.encode(date, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        final JsonObjectRequest peticion = new JsonObjectRequest
+                (
+                        Request.Method.GET,
+                        url,
+                        null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    String valor = response.getString("Estado");
+
+                                    switch (valor) {
+                                        case "NO":
+
+                                            break;
+                                        case "SI":
+                                            break;
+                                    }
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        , new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Toast.makeText(Crear_oferta.this, "Error conexión", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        RequestQueue x = Volley.newRequestQueue(Crear_oferta.this);
+        x.add(peticion);
+    }
+
+    public void notificacion() {
+        puesto = et_puesto.getText().toString().trim();
+        String url = null;
+        try {
+            url = "http://jfsproyecto.online/notificacion_ofertas.php?puesto=" + URLEncoder.encode(puesto, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

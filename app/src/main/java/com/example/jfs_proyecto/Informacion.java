@@ -1,10 +1,24 @@
 package com.example.jfs_proyecto;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -50,6 +64,7 @@ public class Informacion extends AppCompatActivity {
         discapacidad = getIntent().getExtras().getString("discapacidad");
         estudios = getIntent().getExtras().getString("nivel_estudios");
 
+        notificar();
         revisar();
 
         tv_nombre.setText("Nombre:\n" + nombre);
@@ -134,7 +149,55 @@ public class Informacion extends AppCompatActivity {
         if (nacionalidad.equals("14")){nacionalidad="Ruso";}
         if (nacionalidad.equals("15")){nacionalidad="Otro";}
 
+    }
+
+    public void notificar(){
+        String empresa = obtenerNombre();
+        String url = null;
+        try {
+            url = "http://jfsproyecto.online/notificacion_ver.php?correo=" + correo +
+                    "&empresa=" + URLEncoder.encode(empresa, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest peticion = new JsonObjectRequest
+                (
+                        Request.Method.GET,
+                        url,
+                        null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    String valor = response.getString("Estado");
+
+                                    switch (valor) {
+                                        case "EXITOSO":
+                                            break;
+                                        case "FALLIDO":
+                                            break;
+                                    }
 
 
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        , new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //Toast.makeText(Login.this, "Error conexión", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        RequestQueue x = Volley.newRequestQueue(Informacion.this);
+        x.add(peticion);
+    }
+
+    //Funcion para obtener Nombre
+    public String obtenerNombre() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Informacion.this);
+        String id_preference = preferences.getString("NOMBRE", "1");
+        return id_preference;
     }
 }
