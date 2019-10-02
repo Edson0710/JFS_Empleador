@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Admin"></activity>
+        <activity android:name=".codigo"></activity>
+        <activity android:name=".Admin" />
         <activity android:name=".Reportados" />
         <activity android:name=".Busqueda" />
         <activity android:name=".Informacion" />

@@ -57,8 +57,6 @@ public class Crear_oferta extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 crear();
-                Intent intent = new Intent(Crear_oferta.this, Vista_principal.class);
-                startActivity(intent);
             }
         });
 
@@ -552,50 +550,58 @@ public class Crear_oferta extends AppCompatActivity {
         sueldo = et_sueldo.getText().toString().trim();
         edad = et_edad.getText().toString().trim();
         estatura = et_estatura.getText().toString().trim();
-        notificacion();
-        String url = null;
-        try {
-            url = "http://jfsproyecto.online/crearOferta_empleador.php?nombre=" + URLEncoder.encode(nombre, "UTF-8") + "&id=" + id
-                    + "&puesto=" + URLEncoder.encode(puesto, "UTF-8") + "&profesion=" + URLEncoder.encode(profesion,"UTF-8")
-                    + "&sueldo=" + sueldo + "&edad=" + edad + "&estatura=" + estatura + "&nacionalidad=" + Nacionalidad
-                    + "&estado=" + EstadoCivil + "&segundo=" + SegundoIdioma + "&tercer=" + Tercer_idioma + "&discapacidad=" + Discapacidades
-                    + "&estudios=" + NivelEstudios + "&fecha=" + URLEncoder.encode(date, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        final JsonObjectRequest peticion = new JsonObjectRequest
-                (
-                        Request.Method.GET,
-                        url,
-                        null,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    String valor = response.getString("Estado");
+        if (nombre.equals("") || puesto.equals("") || profesion.equals("") || sueldo.equals("") || edad.equals("") 
+        || estatura.equals("") || Nacionalidad.equals("0") || EstadoCivil.equals("0") || SegundoIdioma.equals("0") || Tercer_idioma.equals("0")
+        || Discapacidades.equals("0") || NivelEstudios.equals("0")){
+            Toast.makeText(this, "Llene todos los campos", Toast.LENGTH_SHORT).show();
+        }else{
+            notificacion();
+            String url = null;
+            try {
+                url = "http://jfsproyecto.online/crearOferta_empleador.php?nombre=" + URLEncoder.encode(nombre, "UTF-8") + "&id=" + id
+                        + "&puesto=" + URLEncoder.encode(puesto, "UTF-8") + "&profesion=" + URLEncoder.encode(profesion,"UTF-8")
+                        + "&sueldo=" + sueldo + "&edad=" + edad + "&estatura=" + estatura + "&nacionalidad=" + Nacionalidad
+                        + "&estado=" + EstadoCivil + "&segundo=" + SegundoIdioma + "&tercer=" + Tercer_idioma + "&discapacidad=" + Discapacidades
+                        + "&estudios=" + NivelEstudios + "&fecha=" + URLEncoder.encode(date, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            final JsonObjectRequest peticion = new JsonObjectRequest
+                    (
+                            Request.Method.GET,
+                            url,
+                            null,
+                            new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    try {
+                                        String valor = response.getString("Estado");
+                                        Intent intent = new Intent(Crear_oferta.this, Vista_principal.class);
+                                        startActivity(intent);
+                                        switch (valor) {
+                                            case "NO":
 
-                                    switch (valor) {
-                                        case "NO":
+                                                break;
+                                            case "SI":
+                                                break;
+                                        }
 
-                                            break;
-                                        case "SI":
-                                            break;
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
-
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
                                 }
                             }
+                            , new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            //Toast.makeText(Crear_oferta.this, "Error conexión", Toast.LENGTH_SHORT).show();
                         }
-                        , new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //Toast.makeText(Crear_oferta.this, "Error conexión", Toast.LENGTH_SHORT).show();
-                    }
-                });
-        RequestQueue x = Volley.newRequestQueue(Crear_oferta.this);
-        x.add(peticion);
+                    });
+            RequestQueue x = Volley.newRequestQueue(Crear_oferta.this);
+            x.add(peticion);
+        }
+       
     }
 
     public void notificacion() {
