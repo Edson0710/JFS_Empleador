@@ -1,10 +1,12 @@
 package com.example.jfs_proyecto;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -32,6 +34,7 @@ public class Registro_3 extends AppCompatActivity {
     private Bitmap bitmap;
     private int PICK_IMAGE_REQUEST = 1;
     private String UPLOAD_URL = "http://jfsproyecto.online/registro_empleador.php";
+    boolean flag = false;
 
 
     @Override
@@ -81,8 +84,12 @@ public class Registro_3 extends AppCompatActivity {
     //Metodo boton terminar registro
     public void Terminar (View view){
         uploadImage();
-        Intent intent = new Intent(Registro_3.this, Login.class);
-        startActivity(intent);
+        if (flag){
+            mensaje();
+        } else {
+            //Intent intent = new Intent(Registro_3.this, Login.class);
+            //startActivity(intent);
+        }
     }
 
     //----------------------------------------------------------------------------------------------
@@ -130,10 +137,12 @@ public class Registro_3 extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
+                        flag = true;
                         //Descartar el diálogo de progreso
                         loading.dismiss();
+                        mensaje();
                         //Mostrando el mensaje de la respuesta
-                        Toast.makeText(Registro_3.this, s, Toast.LENGTH_LONG).show();
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -141,9 +150,10 @@ public class Registro_3 extends AppCompatActivity {
                     public void onErrorResponse(VolleyError volleyError) {
                         //Descartar el diálogo de progreso
                         loading.dismiss();
-
+                        mensaje();
                         //Showing toast
                         Toast.makeText(Registro_3.this, volleyError.getMessage().toString(), Toast.LENGTH_LONG).show();
+                        flag = true;
                     }
                 }) {
             @Override
@@ -179,6 +189,23 @@ public class Registro_3 extends AppCompatActivity {
 
         //Agregar solicitud a la cola
         requestQueue.add(stringRequest);
+    }
+
+    public void mensaje(){
+        AlertDialog.Builder myBuild = new AlertDialog.Builder(Registro_3.this);
+        myBuild.setMessage("Bienvenido a JFS, tu registro ha sido exitoso.");
+        myBuild.setTitle("JFS");
+        myBuild.setCancelable(false);
+        myBuild.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Registro_3.this, Login.class);
+                startActivity(intent);
+            }
+        });
+
+        AlertDialog dialog = myBuild.create();
+        dialog.show();
     }
 
 

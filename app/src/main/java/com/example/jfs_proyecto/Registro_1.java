@@ -1,6 +1,8 @@
 package com.example.jfs_proyecto;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -36,6 +38,8 @@ public class Registro_1 extends AppCompatActivity {
         giro_etxt = findViewById(R.id.Registro1_etxt_giro);
         direccion_etxt = findViewById(R.id.Registro1_etxt_direccion);
         telefono_etxt = findViewById(R.id.Registro1_etxt_telefono);
+
+        mensaje();
     }
 
     //-------------------------Botones--------------------------------------------------------------
@@ -57,19 +61,27 @@ public class Registro_1 extends AppCompatActivity {
         telefono = telefono_etxt.getText().toString().trim();
 
 
-       if (correo.equals("") || contra1.equals("") || contra2.equals("") || nombre.equals("") || giro.equals("")
-                || direccion.equals("") || telefono.equals("")) {
-            Toast.makeText(Registro_1.this, "Llene todos los campos", Toast.LENGTH_SHORT).show();
-        } else if (!validarEmail(correo)) {
-            Toast.makeText(this, "El correo no es válido", Toast.LENGTH_SHORT).show();
-        } else if (contra1.equals(contra2)) {
-            if (telefono.length() == 10) {
-                validacion();
+        if (giro.length() >= 3) {
+            if (nombre.length() >= 3) {
+                if (correo.equals("") || contra1.equals("") || contra2.equals("") || nombre.equals("") || giro.equals("")
+                        || direccion.equals("") || telefono.equals("")) {
+                    Toast.makeText(Registro_1.this, "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                } else if (!validarEmail(correo)) {
+                    Toast.makeText(this, "El correo no es válido", Toast.LENGTH_SHORT).show();
+                } else if (contra1.equals(contra2)) {
+                    if (telefono.length() == 10) {
+                        validacion();
+                    } else {
+                        Toast.makeText(this, "Ingrese un número telefónico de 10 digitos", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(Registro_1.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(this, "Ingrese un número telefónico de 10 digitos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Ingrese un nombre con más de 3 caracteres", Toast.LENGTH_LONG).show();
             }
         } else {
-            Toast.makeText(Registro_1.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Ingrese un giro con más de 3 caracteres", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -119,10 +131,25 @@ public class Registro_1 extends AppCompatActivity {
                         , new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                       // Toast.makeText(Registro_1.this, "Error conexión", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(Registro_1.this, "Error conexión", Toast.LENGTH_SHORT).show();
                     }
                 });
         RequestQueue x = Volley.newRequestQueue(Registro_1.this);
         x.add(peticion);
+    }
+
+    public void mensaje() {
+        AlertDialog.Builder myBuild = new AlertDialog.Builder(Registro_1.this);
+        myBuild.setMessage("Para que el registro sea exitoso, es importante que llenes toda la información de manera correcta.");
+        myBuild.setTitle("JFS");
+        myBuild.setCancelable(false);
+        myBuild.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        AlertDialog dialog = myBuild.create();
+        dialog.show();
     }
 }

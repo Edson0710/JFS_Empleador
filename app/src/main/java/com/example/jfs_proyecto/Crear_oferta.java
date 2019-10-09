@@ -538,7 +538,6 @@ public class Crear_oferta extends AppCompatActivity {
         });
 
 
-
     }
 
     //Metodo para publicar la oferta
@@ -550,58 +549,78 @@ public class Crear_oferta extends AppCompatActivity {
         sueldo = et_sueldo.getText().toString().trim();
         edad = et_edad.getText().toString().trim();
         estatura = et_estatura.getText().toString().trim();
-        if (nombre.equals("") || puesto.equals("") || profesion.equals("") || sueldo.equals("") || edad.equals("") 
-        || estatura.equals("") || Nacionalidad.equals("0") || EstadoCivil.equals("0") || SegundoIdioma.equals("0") || Tercer_idioma.equals("0")
-        || Discapacidades.equals("0") || NivelEstudios.equals("0")){
-            Toast.makeText(this, "Llene todos los campos", Toast.LENGTH_SHORT).show();
-        }else{
-            notificacion();
-            String url = null;
-            try {
-                url = "http://jfsproyecto.online/crearOferta_empleador.php?nombre=" + URLEncoder.encode(nombre, "UTF-8") + "&id=" + id
-                        + "&puesto=" + URLEncoder.encode(puesto, "UTF-8") + "&profesion=" + URLEncoder.encode(profesion,"UTF-8")
-                        + "&sueldo=" + sueldo + "&edad=" + edad + "&estatura=" + estatura + "&nacionalidad=" + Nacionalidad
-                        + "&estado=" + EstadoCivil + "&segundo=" + SegundoIdioma + "&tercer=" + Tercer_idioma + "&discapacidad=" + Discapacidades
-                        + "&estudios=" + NivelEstudios + "&fecha=" + URLEncoder.encode(date, "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            final JsonObjectRequest peticion = new JsonObjectRequest
-                    (
-                            Request.Method.GET,
-                            url,
-                            null,
-                            new Response.Listener<JSONObject>() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    try {
-                                        String valor = response.getString("Estado");
-                                        Intent intent = new Intent(Crear_oferta.this, Vista_principal.class);
-                                        startActivity(intent);
-                                        switch (valor) {
-                                            case "NO":
-
-                                                break;
-                                            case "SI":
-                                                break;
-                                        }
-
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
+        if (nombre.length() >= 3) {
+            if (puesto.length() >= 3) {
+                if (profesion.length() >= 3) {
+                    if (nombre.equals("") || puesto.equals("") || profesion.equals("") || sueldo.equals("") || edad.equals("")
+                            || estatura.equals("") || Nacionalidad.equals("0") || EstadoCivil.equals("0") || SegundoIdioma.equals("0") || Tercer_idioma.equals("0")
+                            || Discapacidades.equals("0") || NivelEstudios.equals("0")) {
+                        Toast.makeText(this, "Llene todos los campos", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (Integer.parseInt(edad) >= 18 && Integer.parseInt(edad) <= 99) {
+                            if (Integer.parseInt(estatura) >= 130) {
+                                notificacion();
+                                String url = null;
+                                try {
+                                    url = "http://jfsproyecto.online/crearOferta_empleador.php?nombre=" + URLEncoder.encode(nombre, "UTF-8") + "&id=" + id
+                                            + "&puesto=" + URLEncoder.encode(puesto, "UTF-8") + "&profesion=" + URLEncoder.encode(profesion, "UTF-8")
+                                            + "&sueldo=" + sueldo + "&edad=" + edad + "&estatura=" + estatura + "&nacionalidad=" + Nacionalidad
+                                            + "&estado=" + EstadoCivil + "&segundo=" + SegundoIdioma + "&tercer=" + Tercer_idioma + "&discapacidad=" + Discapacidades
+                                            + "&estudios=" + NivelEstudios + "&fecha=" + URLEncoder.encode(date, "UTF-8");
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
                                 }
+                                final JsonObjectRequest peticion = new JsonObjectRequest
+                                        (
+                                                Request.Method.GET,
+                                                url,
+                                                null,
+                                                new Response.Listener<JSONObject>() {
+                                                    @Override
+                                                    public void onResponse(JSONObject response) {
+                                                        try {
+                                                            String valor = response.getString("Estado");
+                                                            Intent intent = new Intent(Crear_oferta.this, Vista_principal.class);
+                                                            startActivity(intent);
+                                                            switch (valor) {
+                                                                case "NO":
+
+                                                                    break;
+                                                                case "SI":
+                                                                    break;
+                                                            }
+
+
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                    }
+                                                }
+                                                , new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                //Toast.makeText(Crear_oferta.this, "Error conexión", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                RequestQueue x = Volley.newRequestQueue(Crear_oferta.this);
+                                x.add(peticion);
+                            } else{
+                                Toast.makeText(this, "La estatura debe de ser mayor a 130", Toast.LENGTH_SHORT).show();
                             }
-                            , new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            //Toast.makeText(Crear_oferta.this, "Error conexión", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "La edad debe ser mayor o igual a 18", Toast.LENGTH_LONG).show();
                         }
-                    });
-            RequestQueue x = Volley.newRequestQueue(Crear_oferta.this);
-            x.add(peticion);
+                    }
+                } else {
+                    Toast.makeText(this, "La profesion debe de tener mas de 3 caracteres", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "El puesto debe de tener más de 3 caracteres", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "El nombre debe de tener más de 3 caracteres", Toast.LENGTH_SHORT).show();
         }
-       
+
     }
 
     public void notificacion() {

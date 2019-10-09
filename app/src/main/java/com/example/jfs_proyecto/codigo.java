@@ -1,6 +1,8 @@
 package com.example.jfs_proyecto;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +48,7 @@ public class codigo extends AppCompatActivity {
         final int numero = r.nextInt(1111 - 1) + 7777;
 
         validacion(numero, correo);
+        mensaje();
 
         comprobar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,11 +94,27 @@ public class codigo extends AppCompatActivity {
                         , new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(codigo.this, "Error conexión", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(codigo.this, "Error conexión", Toast.LENGTH_SHORT).show();
                     }
                 });
         RequestQueue x = Volley.newRequestQueue(codigo.this);
         x.add(peticion);
+    }
+
+    public void mensaje(){
+        AlertDialog.Builder myBuild = new AlertDialog.Builder(codigo.this);
+        myBuild.setMessage("Un código será enviado al correo proporcionado para verificar que el correo exista.\n" +
+                "En caso de cancelar tu registro, el código enviado no será válido.");
+        myBuild.setTitle("JFS");
+        myBuild.setCancelable(false);
+        myBuild.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        AlertDialog dialog = myBuild.create();
+        dialog.show();
     }
 
 }
