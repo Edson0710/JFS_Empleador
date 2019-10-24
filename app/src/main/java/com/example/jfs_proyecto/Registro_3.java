@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
@@ -121,12 +122,31 @@ public class Registro_3 extends AppCompatActivity {
                 //Cómo obtener el mapa de bits de la Galería
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 //Configuración del mapa de bits en ImageView
+                bitmap = redimensionarImagen(bitmap, 600, 800);
                 imagen.setImageBitmap(bitmap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
     }
+    private Bitmap redimensionarImagen(Bitmap bitmap, float anchoNuevo, float altoNuevo) {
+        int ancho = bitmap.getWidth();
+        int alto = bitmap.getHeight();
+
+        if (ancho > anchoNuevo || alto > altoNuevo) {
+            float escalaAncha =  anchoNuevo/ancho;
+            float escalaAlto = altoNuevo/alto;
+            Matrix matrix = new Matrix();
+            matrix.postScale(escalaAncha, escalaAlto);
+            return Bitmap.createBitmap(bitmap, 0, 0, ancho, alto, matrix, false);
+
+        } else {
+            return bitmap;
+        }
+
+    }
+
 
     //---------------------------Funciones-------------------------------------------------
 

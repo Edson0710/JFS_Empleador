@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
@@ -156,6 +157,7 @@ public class Vista_principal extends AppCompatActivity implements NavigationView
                 //Cómo obtener el mapa de bits de la Galería
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 //Configuración del mapa de bits en ImageView
+                bitmap = redimensionarImagen(bitmap, 600, 800);
                 imagen.setImageBitmap(bitmap);
                 uploadImage();
                 recreate();
@@ -163,6 +165,23 @@ public class Vista_principal extends AppCompatActivity implements NavigationView
                 e.printStackTrace();
             }
         }
+    }
+
+    private Bitmap redimensionarImagen(Bitmap bitmap, float anchoNuevo, float altoNuevo) {
+        int ancho = bitmap.getWidth();
+        int alto = bitmap.getHeight();
+
+        if (ancho > anchoNuevo || alto > altoNuevo) {
+            float escalaAncha =  anchoNuevo/ancho;
+            float escalaAlto = altoNuevo/alto;
+            Matrix matrix = new Matrix();
+            matrix.postScale(escalaAncha, escalaAlto);
+            return Bitmap.createBitmap(bitmap, 0, 0, ancho, alto, matrix, false);
+
+        } else {
+            return bitmap;
+        }
+
     }
 //--------------------------------------Funciones-------------------------------------------------
 
